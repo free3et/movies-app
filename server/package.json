@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "apollo-server": "^3.11.1",
+    "axios": "^1.2.2",
+    "date-fns": "^2.29.3",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
