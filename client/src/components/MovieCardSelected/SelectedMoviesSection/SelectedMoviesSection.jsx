@@ -41,7 +41,7 @@ export const SelectedMoviesSection = ({ selectedMovies, deleteMovie }) => {
     const ids = selectedMovies.map(({ id }) => id);
     const link = `${
       window.location.host
-    }/recomended?title=${listName}&ids=${ids.join(",")}`;
+    }/recomendations?title=${listName}&ids=${ids.join(",")}`;
     setUrl(link);
     setListName(listName);
   };

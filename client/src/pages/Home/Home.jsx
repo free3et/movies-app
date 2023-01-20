@@ -98,14 +98,6 @@ export const Home = () => {
                 selectedMovies={selectedMovies}
                 deleteMovie={deleteMovie}
               />
-
-              {/*  {selectedMovies.map((movie) => (
-                <MovieCardSelected
-                  key={movie.id}
-                  movie={movie}
-                  onCardDelete={deleteMovie}
-                />
-              ))} */}
             </>
           </SelectedMovies>
         </Grid>

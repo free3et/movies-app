@@ -6,9 +6,8 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 import { CardMenu } from "../CardMenu/CardMenu";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useState } from "react";
+
+import { FavouriteIcon } from "./FavouriteIcon";
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
   padding: 10,
@@ -18,43 +17,27 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
   },
 }));
 
-export const MovieCard = ({ movie, onCardSelect, deleteMovie }) => {
-  const [favourite, setFavourite] = useState();
+export const MovieCard = ({
+  movie,
+  onCardSelect,
+  deleteMovie,
+  isPreviewMode,
+}) => {
   return (
     <Card sx={{ maxWidth: 250, position: "relative" }}>
-      {favourite ? (
-        <FavoriteIcon
-          fontSize="medium"
-          onClick={() => {
-            onCardSelect(movie);
-            deleteMovie(movie);
-            setFavourite(false);
-          }}
-          sx={{
-            position: "absolute",
-            right: 12,
-            top: 222,
-            color: "rgba(249, 24, 8, 0.8)",
-          }}
-        />
-      ) : (
-        <FavoriteBorderIcon
-          fontSize="medium"
-          sx={{
-            position: "absolute",
-            right: 12,
-            top: 222,
-            color: "rgba(249, 24, 8, 0.8)",
-          }}
-          onClick={() => {
-            onCardSelect(movie);
-            setFavourite(true);
-          }}
+      {!isPreviewMode && (
+        <FavouriteIcon
+          onCardSelect={onCardSelect}
+          deleteMovie={deleteMovie}
+          movie={deleteMovie}
         />
       )}
-      <CardMenu>
-        <MenuItem onClick={() => onCardSelect(movie)}>Select</MenuItem>
-      </CardMenu>
+
+      {!isPreviewMode && (
+        <CardMenu>
+          <MenuItem onClick={() => onCardSelect(movie)}>Select</MenuItem>
+        </CardMenu>
+      )}
 
       <CardMedia
         component="img"
@@ -93,4 +76,5 @@ MovieCard.propTypes = {
     releaseDate: PropTypes.string,
   }).isRequired,
   onCardSelect: PropTypes.func,
+  isPreviewMode: PropTypes.bool,
 };

@@ -18,7 +18,18 @@ import { SOCIAL_SHARE_BTN_SIZE } from "../../config/constants";
 
 export const SocialSharing = ({ url, title }) => {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack
+      direction="row"
+      spacing={1}
+      sx={{
+        p: "2px 4px",
+        marginTop: "20px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+      }}
+    >
       <FacebookShareButton url={url} title={title}>
         <FacebookIcon round size={SOCIAL_SHARE_BTN_SIZE} />
       </FacebookShareButton>

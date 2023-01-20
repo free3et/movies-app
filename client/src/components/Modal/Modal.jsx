@@ -9,6 +9,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Alert from "@mui/material/Alert";
 import CloseIcon from "@mui/icons-material/Close";
+import Snackbar from "@mui/material/Snackbar";
 import PropTypes from "prop-types";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
@@ -21,19 +22,28 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
+  borderRadius: "8px",
   p: 4,
 };
 
 export const ModalConfirm = ({ open, url, title, onClose }) => {
   const [openAlert, setOpenAlert] = useState(false);
+
+  const handleClose = (event) => {
+    setOpenAlert(false);
+  };
+
   return (
     <Modal
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      sx={{
+        borderRadius: "8px",
+        border: "none",
+      }}
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -55,7 +65,12 @@ export const ModalConfirm = ({ open, url, title, onClose }) => {
             inputProps={{ "aria-label": "list URL" }}
             value={url}
           />
-          <IconButton sx={{ p: "10px" }} aria-label="search">
+          <IconButton
+            href={url}
+            target="_blank"
+            sx={{ p: "10px" }}
+            aria-label="search"
+          >
             <VisibilityIcon />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
@@ -70,23 +85,35 @@ export const ModalConfirm = ({ open, url, title, onClose }) => {
           </CopyToClipboard>
         </Paper>
         {openAlert ? (
-          <Alert
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setOpenAlert(false);
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            sx={{ mb: 2 }}
+          <Snackbar
+            open={open}
+            autoHideDuration={1000}
+            onClose={handleClose}
+            sx={{
+              marginTop: "10px",
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+            }}
+            //anchorOrigin={{ "top", "center" }}
           >
-            Copied!
-          </Alert>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpenAlert(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Copied!
+            </Alert>
+          </Snackbar>
         ) : null}
         <SocialSharing url={url} title={title} />
       </Box>
