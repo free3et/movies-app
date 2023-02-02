@@ -1,17 +1,17 @@
+import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { FormattedMessage } from "react-intl";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import { MovieCard } from "../../components/MovieCard/MovieCard";
-import { useQuery } from "@apollo/client";
-import { MOVIES_QUERY } from "./queries";
-import { Loader } from "../../components/Loader/Loader";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { MovieCardSelected } from "../../components/MovieCardSelected/MovieCardSelected";
-import FavouriteMovies from "../../components/MovieCardSelected/favourite_movies.png";
 import { useMovies } from "../../hooks/useMovies/useMovies";
-import { useState } from "react";
+import { MOVIES_QUERY } from "./queries";
+import { styled } from "@mui/material/styles";
+import { MovieCard } from "../../components/MovieCard/MovieCard";
+import { Loader } from "../../components/Loader/Loader";
+import FavouriteMovies from "../../components/MovieCardSelected/favourite_movies.png";
 import { SelectedMoviesSection } from "../../components/MovieCardSelected/SelectedMoviesSection/SelectedMoviesSection";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
@@ -81,7 +81,9 @@ export const Home = () => {
         </Grid>
         <Grid item xs={12} md={4}>
           <SelectedMovies>
-            <h2>My favourite movies</h2>
+            <h2>
+              <FormattedMessage id="moviesRecomendations" />
+            </h2>
             <>
               {!selectedMovies.length && (
                 <>

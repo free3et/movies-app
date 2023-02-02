@@ -1,4 +1,4 @@
-const { IMAGE_BASE_PATH } = require("../../config/urls");
+const { IMAGE_BASE_PATH } = require("../../config/constants");
 const { format } = require("date-fns");
 
 class Movie {

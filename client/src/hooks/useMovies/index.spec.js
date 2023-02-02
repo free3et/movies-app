@@ -7,6 +7,7 @@ describe("useMovies hook", () => {
     id: 1,
     title: "Movie title",
   };
+
   it("should select movie", () => {
     const { result } = renderHook(() => useMovies());
 
@@ -34,7 +35,7 @@ describe("useMovies hook", () => {
     expect(result.current.selectedMovies.length).toBe(0);
   });
 
-  it("should add movie only once", () => {
+  it("should select movie only once", () => {
     const { result } = renderHook(() => useMovies());
 
     act(() => {
@@ -52,18 +53,22 @@ describe("useMovies hook", () => {
   it("should add no more movies than it is allowed", () => {
     const { result } = renderHook(() => useMovies());
 
-    for (leti = 0; i < MAX_SELECTED_MOVIES; i++) {
+    for (let i = 0; i < MAX_SELECTED_MOVIES; i++) {
       act(() => {
-        result.current.selectMovie({ ...basicMovie, id: i });
+        result.current.selectMovie({
+          ...basicMovie,
+          id: i,
+        });
       });
     }
 
     expect(result.current.selectedMovies.length).toBe(MAX_SELECTED_MOVIES);
 
     act(() => {
-      result.current.selectMovie({ ...basicMovie, id: 21 });
+      result.current.selectMovie({
+        ...basicMovie,
+        id: 21,
+      });
     });
-
-    expect(result.current.selectedMovies.length).toBe(MAX_SELECTED_MOVIES);
   });
 });

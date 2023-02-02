@@ -1,14 +1,14 @@
 import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { MOVIES_QUERY_BY_IDS } from "./queries";
-import { useQuery } from "@apollo/client";
 import { Loader } from "../../components/Loader/Loader";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
 
 export const Recomendations = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const idsData = searchParams.get("ids")?.split(",");
 

@@ -1,3 +1,6 @@
+import { useState, useContext, useCallback } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -6,17 +9,24 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
-import { Navigation } from "../Navigation/Navigation";
-import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
-import { grey } from "@mui/material/colors";
-
 import Hidden from "@mui/material/Hidden";
+import { Navigation } from "../Navigation/Navigation";
+import { LOCALES } from "../../config/constants";
+import { AppContext } from "../../context/index";
 
 export const Header = () => {
   const [isDrawerOpen, setDrawerOpened] = useState(false);
-  const greyColor = grey[800];
+
+  const { state, dispatch } = useContext(AppContext);
+
+  const setLanguage = useCallback((locale) => {
+    dispatch({
+      type: "setLocale",
+      locale,
+    });
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="primary">
@@ -35,7 +45,7 @@ export const Header = () => {
           </Hidden>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to={"/home"} component={RouterLink} sx={{ color: "white" }}>
-              Movies
+              <FormattedMessage id="home" />
             </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", lg: "flex" } }}>
@@ -44,7 +54,7 @@ export const Header = () => {
               to={"/recomendations"}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Recomendations
+              <FormattedMessage id="moviesRecomendations" />
             </Button>
 
             <Button
@@ -52,7 +62,24 @@ export const Header = () => {
               to={"/settings"}
               sx={{ my: 2, color: "white", display: "block" }}
             >
-              Settings
+              <FormattedMessage id="settings" />
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              disabled={state.locale === LOCALES.ENGLISH}
+              sx={{ my: 2, color: "white" }}
+              onClick={() => setLanguage(LOCALES.ENGLISH)}
+            >
+              English
+            </Button>
+
+            <Button
+              disabled={state.locale === LOCALES.UKRANIAN}
+              sx={{ my: 2, color: "white" }}
+              onClick={() => setLanguage(LOCALES.UKRANIAN)}
+            >
+              Українська
             </Button>
           </Box>
         </Toolbar>

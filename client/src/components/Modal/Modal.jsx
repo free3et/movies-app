@@ -1,3 +1,7 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FormattedMessage } from "react-intl";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -10,9 +14,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import Alert from "@mui/material/Alert";
 import CloseIcon from "@mui/icons-material/Close";
 import Snackbar from "@mui/material/Snackbar";
-import PropTypes from "prop-types";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useState } from "react";
 import { SocialSharing } from "../SocialSharing/SocialSharing";
 
 const style = {
@@ -111,7 +112,7 @@ export const ModalConfirm = ({ open, url, title, onClose }) => {
                 </IconButton>
               }
             >
-              Copied!
+              <FormattedMessage id="copied" />
             </Alert>
           </Snackbar>
         ) : null}

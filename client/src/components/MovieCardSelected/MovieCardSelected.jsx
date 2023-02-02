@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
-import PropTypes from "prop-types";
 import { CardMenu } from "../CardMenu/CardMenu";
 
 export const MovieCardSelected = ({ movie, onCardDelete }) => {
@@ -63,7 +64,9 @@ export const MovieCardSelected = ({ movie, onCardDelete }) => {
             </Typography>
           </Box>
           <CardMenu>
-            <MenuItem onClick={() => onCardDelete(movie)}>Delete</MenuItem>
+            <MenuItem onClick={() => onCardDelete(movie)}>
+              <FormattedMessage id="delete" />
+            </MenuItem>
           </CardMenu>
         </Box>
       </Card>

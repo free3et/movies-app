@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 import { CardMenu } from "../CardMenu/CardMenu";
-
 import { FavouriteIcon } from "./FavouriteIcon";
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
@@ -29,7 +28,7 @@ export const MovieCard = ({
         <FavouriteIcon
           onCardSelect={onCardSelect}
           deleteMovie={deleteMovie}
-          movie={deleteMovie}
+          movie={movie}
         />
       )}
 
