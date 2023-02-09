@@ -11,5 +11,24 @@ export default {
     copied: "Скопійовано!",
     select: "Вибрати",
     delete: "Видалити",
+
+    sort_by: "Сортувати по",
+    sort_direction: "Напрямок",
+    include_adult: "Включно 18+",
+    year: "Рік",
+    release_year: "Рік випуску",
+    genre: "Жанр",
+    submit: "Пошук",
+
+    popularity: "Популярність",
+    release_date: "Дата випуску",
+    revenue: "Дохід",
+    primary_release_date: "Першочергова дата релізу",
+    original_title: "Оригінальна назва",
+    vote_average: "Середня оцінка",
+    vote_count: "Кількість оцінок",
+
+    asc: "ASC",
+    desc: "DESC",
   },
 };

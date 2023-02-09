@@ -1,6 +1,22 @@
 type Query {
-  movies(page: Int): Movies
+  movies(filter: MoviesFilter): Movies
   moviesByIds(ids: [Int]): [Movie]
+  genres: [Genre]
+}
+
+input MoviesFilter {
+  page: Int
+  sortBy: String
+  sortDirection: SORT_DIRECTION
+  includeAdult: Boolean
+  year: Int
+  primaryReleaseYear: Int
+  genre: Int
+}
+
+enum SORT_DIRECTION {
+  desc
+  asc
 }
 
 type Movies {
@@ -13,8 +29,9 @@ type Movies {
 type Movie {
   id: ID!
   title: String!
+  originalTitle: String
   releaseDate(format: String): String!
-  posterPath: String!
+  posterPath: String
   genres: [Genre]
   adult: Boolean
   overview: String
@@ -28,5 +45,5 @@ type Movie {
 
 type Genre {
   id: Int!
-  name: String!
+  name: String
 }

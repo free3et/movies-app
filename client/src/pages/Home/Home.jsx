@@ -13,6 +13,8 @@ import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { Loader } from "../../components/Loader/Loader";
 import FavouriteMovies from "../../components/MovieCardSelected/favourite_movies.png";
 import { SelectedMoviesSection } from "../../components/MovieCardSelected/SelectedMoviesSection/SelectedMoviesSection";
+import { Filters } from "../../components/Filters/Filters";
+import { useFilters } from "../../hooks/useMovies/useFilters";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -27,25 +29,33 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 }));
 
 export const Home = () => {
-  const [page, setPage] = useState(1);
   const MAX_PAGES_SIZE = 500;
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
+
+  const { filter, setFilter, setPage } = useFilters();
+
+  const { loading, error, data } = useQuery(MOVIES_QUERY, {
+    variables: { filter },
+  });
 
   const paginationHandler = (event, page) => {
     setPage(page);
   };
 
-  const { loading, error, data } = useQuery(MOVIES_QUERY, {
-    variables: { page },
-  });
   if (loading) return <Loader />;
   if (error) return <p>Error : {error.message}</p>;
+
+  function onSubmit(data) {
+    setFilter(data);
+  }
 
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Paper>Filters sections</Paper>
+          <Paper>
+            <Filters onSubmit={onSubmit} initialValues={filter} />
+          </Paper>
         </Grid>
 
         <Grid item xs={12} md={8}>
@@ -59,7 +69,7 @@ export const Home = () => {
                       count={MAX_PAGES_SIZE}
                       shape="rounded"
                       //color="secondary"
-                      page={page}
+                      page={filter.page}
                       onChange={paginationHandler}
                     />
                   </Stack>
