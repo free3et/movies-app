@@ -5,7 +5,6 @@ import { GENRES_QUERY } from "./queries";
 
 import { FormattedMessage } from "react-intl";
 import { GenreField } from "./FiltersFields/GenreField";
-import { YearField } from "./FiltersFields/YearField";
 import { AdultField } from "./FiltersFields/AdultField";
 import { SubmitBtn } from "./FiltersFields/SubmitBtn";
 import { SortByField } from "./FiltersFields/SortByField";
@@ -43,10 +42,6 @@ export const Filters = ({ onSubmit, initialValues }) => {
                 </Box>
 
                 <Box mr={3}>
-                  <YearField />
-                </Box>
-
-                <Box mr={3}>
                   <ReleaseYearField />
                 </Box>
                 <Box mr={3}>
@@ -58,10 +53,10 @@ export const Filters = ({ onSubmit, initialValues }) => {
                 <Box mr={3}>
                   <AdultField />
                 </Box>
+                <Box mr={3}>
+                  <SubmitBtn />
+                </Box>
               </Box>
-            </Box>
-            <Box>
-              <SubmitBtn />
             </Box>
           </form>
         )}

@@ -22,6 +22,7 @@ export const MovieCard = ({
   deleteMovie,
   isPreviewMode,
 }) => {
+  console.log(movie);
   return (
     <Card sx={{ maxWidth: 250, position: "relative" }}>
       {!isPreviewMode && (
@@ -60,6 +61,9 @@ export const MovieCard = ({
           {movie.title}
         </Typography>
 
+        <Typography mb={0} variant="subtitle2" gutterBottom component="h3">
+          {movie.voteAverage}
+        </Typography>
         <Typography mb={0} variant="subtitle2" gutterBottom component="h3">
           {movie.releaseDate}
         </Typography>

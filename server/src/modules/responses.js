@@ -18,7 +18,7 @@ const getDetails = (id, language) => {
 
 const discoverMovies = async (filter, language) => {
   const filterMovies = await axios.get(
-    `${API_URL}/discover/movie?api_key=${API_KEY}&language=${language}&page=${filter.page}&year=${filter.year}&sort_by=${filter.sortBy}.${filter.sortDirection}&include_adult=${filter.includeAdult}&primary_release_year=${filter.primaryReleaseYear}&with_genres=${filter.genre}`
+    `${API_URL}/discover/movie?api_key=${API_KEY}&language=${language}&page=${filter.page}&sort_by=${filter.sortBy}.${filter.sortDirection}&include_adult=${filter.includeAdult}&primary_release_year=${filter.primaryReleaseYear}&with_genres=${filter.genre}`
   );
 
   return new Movies(filterMovies.data);
@@ -32,9 +32,18 @@ const getGenres = async (language) => {
   return filterGenres.data.genres.map((genre) => new Genre(genre));
 };
 
+const searchMovie = async (query, language) => {
+  const searchResult = await axios.get(
+    `${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=${language}&page=1&include_adult=false`
+  );
+
+  return new Movies(searchResult.data);
+};
+
 module.exports = {
   //getPopular,
   getDetails,
   discoverMovies,
   getGenres,
+  searchMovie,
 };

@@ -2,6 +2,7 @@ type Query {
   movies(filter: MoviesFilter): Movies
   moviesByIds(ids: [Int]): [Movie]
   genres: [Genre]
+  search(query: String): Movies
 }
 
 input MoviesFilter {
@@ -9,7 +10,6 @@ input MoviesFilter {
   sortBy: String
   sortDirection: SORT_DIRECTION
   includeAdult: Boolean
-  year: Int
   primaryReleaseYear: Int
   genre: Int
 }

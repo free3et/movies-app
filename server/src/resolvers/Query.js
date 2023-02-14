@@ -22,8 +22,15 @@ async function genres(_, {}, { locale }) {
   return await getGenres(locale);
 }
 
+async function search(parent, args, { locale }) {
+  const data = await searchMovie(args.query, locale);
+
+  return data;
+}
+
 module.exports = {
   movies,
   moviesByIds,
   genres,
+  search,
 };

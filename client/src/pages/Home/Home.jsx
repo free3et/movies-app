@@ -29,7 +29,6 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 }));
 
 export const Home = () => {
-  const MAX_PAGES_SIZE = 500;
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
 
   const { filter, setFilter, setPage } = useFilters();
@@ -49,6 +48,9 @@ export const Home = () => {
     setFilter(data);
   }
 
+  const pagesCount =
+    data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
+
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
@@ -66,7 +68,7 @@ export const Home = () => {
                 <>
                   <Stack spacing={2}>
                     <Pagination
-                      count={MAX_PAGES_SIZE}
+                      count={pagesCount}
                       shape="rounded"
                       //color="secondary"
                       page={filter.page}

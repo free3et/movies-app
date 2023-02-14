@@ -13,7 +13,7 @@ export default {
     delete: "Видалити",
 
     sort_by: "Сортувати по",
-    sort_direction: "Напрямок",
+    sort_direction: "Сортування",
     include_adult: "Включно 18+",
     year: "Рік",
     release_year: "Рік випуску",
@@ -28,7 +28,7 @@ export default {
     vote_average: "Середня оцінка",
     vote_count: "Кількість оцінок",
 
-    asc: "ASC",
-    desc: "DESC",
+    asc: "Зростання",
+    desc: "Спадання",
   },
 };
