@@ -2,6 +2,7 @@ const {
   discoverMovies,
   getDetails,
   getGenres,
+  searchMovie,
 } = require("../modules/responses");
 const { Movie } = require("../modules/movies/Movie");
 
@@ -23,8 +24,7 @@ async function genres(_, {}, { locale }) {
 }
 
 async function search(parent, args, { locale }) {
-  const data = await searchMovie(args.query, locale);
-
+  const data = await searchMovie(args.queryStr, locale);
   return data;
 }
 

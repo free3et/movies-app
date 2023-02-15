@@ -8,6 +8,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useMovies } from "../../hooks/useMovies/useMovies";
 import { MOVIES_QUERY } from "./queries";
+import { SEARCH_QUERY } from "../../components/Search/queries";
 import { styled } from "@mui/material/styles";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { Loader } from "../../components/Loader/Loader";
@@ -15,6 +16,8 @@ import FavouriteMovies from "../../components/MovieCardSelected/favourite_movies
 import { SelectedMoviesSection } from "../../components/MovieCardSelected/SelectedMoviesSection/SelectedMoviesSection";
 import { Filters } from "../../components/Filters/Filters";
 import { useFilters } from "../../hooks/useMovies/useFilters";
+import { useSearch } from "../../hooks/useMovies/useSearch";
+import { Search } from "../../components/Search/Search";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",
@@ -33,28 +36,56 @@ export const Home = () => {
 
   const { filter, setFilter, setPage } = useFilters();
 
-  const { loading, error, data } = useQuery(MOVIES_QUERY, {
+  const { loading, error, data: moviesData } = useQuery(MOVIES_QUERY, {
     variables: { filter },
   });
 
+  // Search 
+  const { queryStr,
+    setSearchPage, setSearchFilter } = useSearch();
+
+ const { loading: searchLoading, error: searchError, data } = useQuery(SEARCH_QUERY, {
+    variables: { queryStr },
+  });
+  console.log(data);
+
+  const isSearchEmpty = data?.search?.results.length === 0;
+
   const paginationHandler = (event, page) => {
-    setPage(page);
+    isSearchEmpty ? setPage(page) : setSearchPage(page);
   };
 
   if (loading) return <Loader />;
   if (error) return <p>Error : {error.message}</p>;
 
-  function onSubmit(data) {
-    setFilter(data);
+  function onSubmit(moviesData) {
+    setFilter(moviesData);
   }
 
+  function onSearchSubmit(data){
+    setSearchFilter(data)
+  }
+
+  console.log(queryStr);
+
   const pagesCount =
-    data?.movies?.totalPages <= 500 ? data?.movies?.totalPages : 500;
+  moviesData?.movies?.totalPages <= 500 ? moviesData?.movies?.totalPages : 500;
+
+  const pagesSearchCount =
+  data?.search?.totalPages <= 500 ? data?.search?.totalPages : 500;
+
 
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
+      <Grid item xs={12} md={8}>
+      <Paper>
+            <Search onSubmit={onSearchSubmit} />
+          </Paper>
+        </Grid>
+
         <Grid item xs={12}>
+        
           <Paper>
             <Filters onSubmit={onSubmit} initialValues={filter} />
           </Paper>
@@ -64,19 +95,29 @@ export const Home = () => {
           <Paper>
             <Box sx={{ flexGrow: 1, padding: 2 }}>
               {loading && <Loader />}
-              {data && (
+              {searchLoading && <Loader />}
+
+              {moviesData && (
                 <>
                   <Stack spacing={2}>
                     <Pagination
-                      count={pagesCount}
+                      count={isSearchEmpty ? pagesCount : pagesSearchCount}
                       shape="rounded"
                       //color="secondary"
-                      page={filter.page}
+                      page={isSearchEmpty ? filter.page : queryStr.page}
                       onChange={paginationHandler}
                     />
                   </Stack>
                   <Grid container spacing={1}>
-                    {data.movies.results.map((movie) => (
+                    {isSearchEmpty ? moviesData.movies.results.map((movie) => (
+                      <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+                        <MovieCard
+                          movie={movie}
+                          onCardSelect={selectMovie}
+                          deleteMovie={deleteMovie}
+                        />
+                      </Grid>
+                    )) : data?.search?.results.map((movie) => (
                       <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
                         <MovieCard
                           movie={movie}
@@ -101,7 +142,7 @@ export const Home = () => {
                 <>
                   <img
                     src={FavouriteMovies}
-                    alt={data.movies.title}
+                    alt={moviesData.movies.title}
                     style={{
                       width: "100%",
                     }}

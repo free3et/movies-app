@@ -2,7 +2,7 @@ type Query {
   movies(filter: MoviesFilter): Movies
   moviesByIds(ids: [Int]): [Movie]
   genres: [Genre]
-  search(query: String): Movies
+  search(queryStr: SearchFilter): Movies
 }
 
 input MoviesFilter {
@@ -12,6 +12,12 @@ input MoviesFilter {
   includeAdult: Boolean
   primaryReleaseYear: Int
   genre: Int
+}
+
+input SearchFilter {
+  page: Int
+  query: String
+  includeAdult: Boolean
 }
 
 enum SORT_DIRECTION {

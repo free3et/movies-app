@@ -4,28 +4,20 @@ import { SEARCH_QUERY } from "./queries";
 import { FormattedMessage } from "react-intl";
 import { Loader } from "../Loader/Loader";
 import { SubmitBtn } from "../Filters/FiltersFields/SubmitBtn";
+import Paper from '@mui/material/Paper';
+import InputBase from "@mui/material/InputBase";
 
 export const Search = ({ onSubmit }) => {
-  const { loading, error, data } = useQuery(SEARCH_QUERY);
-
-  if (loading) return <Loader />;
-
-  return (
+  
+   return (
     <Form
       onSubmit={onSubmit}
-      validate={(values) => {
-        const errors = {};
-        if (!values.searchField) {
-          errors.searchField = "Required";
-        }
-
-        return errors;
-      }}
+      
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}>
             <Field
-              name="searchField"
+              name="query"
               render={({ input, meta }) => (
                 <>
                   <InputBase

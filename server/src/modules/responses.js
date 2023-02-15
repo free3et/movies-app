@@ -32,12 +32,14 @@ const getGenres = async (language) => {
   return filterGenres.data.genres.map((genre) => new Genre(genre));
 };
 
-const searchMovie = async (query, language) => {
-  const searchResult = await axios.get(
-    `${API_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=${language}&page=1&include_adult=false`
+const searchMovie = async (queryStr, language) => {
+
+  const searchMovies = await axios.get(
+    `${API_URL}/search/movie?api_key=${API_KEY}&language=${language}&page=${queryStr.page}&include_adult=${queryStr.includeAdult}&query=${queryStr.query}}`
   );
 
-  return new Movies(searchResult.data);
+  return new Movies(searchMovies.data);
+
 };
 
 module.exports = {

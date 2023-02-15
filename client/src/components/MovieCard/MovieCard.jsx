@@ -22,7 +22,6 @@ export const MovieCard = ({
   deleteMovie,
   isPreviewMode,
 }) => {
-  console.log(movie);
   return (
     <Card sx={{ maxWidth: 250, position: "relative" }}>
       {!isPreviewMode && (
