@@ -18,9 +18,6 @@ root.render(
 
 reportWebVitals();
 
-// add search field
-// add go to movie
-// make full nfo on page movie
 // section top popular on home
 // add to watchlist?
 // add slider on home?

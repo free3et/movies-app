@@ -3,6 +3,7 @@ const {
   getDetails,
   getGenres,
   searchMovie,
+  getTrailer,
 } = require("../modules/responses");
 const { Movie } = require("../modules/movies/Movie");
 
@@ -19,6 +20,11 @@ async function moviesByIds(parent, { ids }, { locale }) {
   return movies;
 }
 
+async function getSingleMovie(parent, { id }, { locale }) {
+  const singleMovie = await getDetails(id, locale);
+  return singleMovie.data;
+}
+
 async function genres(_, {}, { locale }) {
   return await getGenres(locale);
 }
@@ -28,9 +34,17 @@ async function search(parent, args, { locale }) {
   return data;
 }
 
+async function getTrailers(parent, { id }, { locale }) {
+  const trailer = await getTrailer(id, locale);
+  console.log(trailer);
+  return trailer;
+}
+
 module.exports = {
   movies,
   moviesByIds,
   genres,
   search,
+  getSingleMovie,
+  getTrailers,
 };

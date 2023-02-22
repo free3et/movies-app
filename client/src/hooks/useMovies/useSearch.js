@@ -3,8 +3,8 @@ import { useState, useCallback } from "react";
 export const useSearch = () => {
   const [queryStr, setQuery] = useState({
     page: 1,
-    query: '',
-    includeAdult: false
+    query: "",
+    includeAdult: false,
   });
 
   const setSearchPage = useCallback(
@@ -22,7 +22,7 @@ export const useSearch = () => {
       setQuery({
         ...queryStr,
         ...searchFields,
-        query: searchFields.query
+        query: searchFields.query,
       });
     },
     [queryStr]

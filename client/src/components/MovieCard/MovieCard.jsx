@@ -7,6 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { styled } from "@mui/material/styles";
 import { CardMenu } from "../CardMenu/CardMenu";
 import { FavouriteIcon } from "./FavouriteIcon";
+import { Link } from "react-router-dom";
 
 const CardInfo = styled(CardContent)(({ theme }) => ({
   padding: 10,
@@ -21,6 +22,7 @@ export const MovieCard = ({
   onCardSelect,
   deleteMovie,
   isPreviewMode,
+  onGetDetails,
 }) => {
   return (
     <Card sx={{ maxWidth: 250, position: "relative" }}>
@@ -67,16 +69,18 @@ export const MovieCard = ({
           {movie.releaseDate}
         </Typography>
       </CardInfo>
+      <Link to={`/movie/${movie.id}`}>Info</Link>
     </Card>
   );
 };
 
-MovieCard.propTypes = {
+/* MovieCard.propTypes = {
   movie: PropTypes.shape({
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     releaseDate: PropTypes.string,
   }).isRequired,
   onCardSelect: PropTypes.func,
+  onGetDetails: PropTypes.func,
   isPreviewMode: PropTypes.bool,
-};
+}; */

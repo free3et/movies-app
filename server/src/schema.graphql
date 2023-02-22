@@ -3,6 +3,8 @@ type Query {
   moviesByIds(ids: [Int]): [Movie]
   genres: [Genre]
   search(queryStr: SearchFilter): Movies
+  getSingleMovie(id: Int!): Movie!
+  getTrailers(id: Int!): Trailers
 }
 
 input MoviesFilter {
@@ -40,16 +42,29 @@ type Movie {
   posterPath: String
   genres: [Genre]
   adult: Boolean
-  overview: String
+  overview: String!
   originalLanguage: String
+  tagline: String!
   backdropPath: String
   popularity: Float
   voteCount: Int
   video: Boolean
   voteAverage: Float
+  runtime: Int!
 }
 
 type Genre {
   id: Int!
   name: String
+}
+
+type Trailers {
+  id: Int!
+  results: [Trailer!]!
+}
+
+type Trailer {
+  key: String!
+  name: String!
+  type: String
 }

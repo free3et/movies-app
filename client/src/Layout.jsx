@@ -18,6 +18,9 @@ import { Header } from "./components/Header/Header";
 import { Home } from "./pages/Home/Home";
 import { Settings } from "./pages/Settings/Settings";
 import { Recomendations } from "./pages/Recomendations/Recomendations";
+import { SingleMovie } from "./components/SingleMovie/SingleMovie";
+import { ThemeProvider, useTheme } from "@mui/material/styles";
+import { theme } from "./theme";
 
 function Layout() {
   const { state } = useContext(AppContext);
@@ -45,22 +48,25 @@ function Layout() {
   return (
     <I18nProvider locale={state.locale}>
       <ApolloProvider client={client}>
-        <CssBaseline />
-        <Header />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Header />
 
-        <Box
-          sx={{
-            backgroundColor: (theme) => theme.palette.grey[100],
-          }}
-        >
-          <Container maxWidth="xl">
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/recomendations" element={<Recomendations />} />
-            </Routes>
-          </Container>
-        </Box>
+          <Box
+            sx={{
+              backgroundColor: (theme) => theme.palette.grey[100],
+            }}
+          >
+            <Container maxWidth="xl" disableGutters>
+              <Routes>
+                <Route path="/home" element={<Home />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/recomendations" element={<Recomendations />} />
+                <Route path="/movie/:id" element={<SingleMovie />} />
+              </Routes>
+            </Container>
+          </Box>
+        </ThemeProvider>
       </ApolloProvider>
     </I18nProvider>
   );

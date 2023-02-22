@@ -34,20 +34,27 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 export const Home = () => {
   const { selectedMovies, selectMovie, deleteMovie } = useMovies();
 
+  // Filter for movies
   const { filter, setFilter, setPage } = useFilters();
 
-  const { loading, error, data: moviesData } = useQuery(MOVIES_QUERY, {
+  const {
+    loading,
+    error,
+    data: moviesData,
+  } = useQuery(MOVIES_QUERY, {
     variables: { filter },
   });
 
-  // Search 
-  const { queryStr,
-    setSearchPage, setSearchFilter } = useSearch();
+  // Search
+  const { queryStr, setSearchPage, setSearchFilter } = useSearch();
 
- const { loading: searchLoading, error: searchError, data } = useQuery(SEARCH_QUERY, {
+  const {
+    loading: searchLoading,
+    error: searchError,
+    data,
+  } = useQuery(SEARCH_QUERY, {
     variables: { queryStr },
   });
-  console.log(data);
 
   const isSearchEmpty = data?.search?.results.length === 0;
 
@@ -62,30 +69,28 @@ export const Home = () => {
     setFilter(moviesData);
   }
 
-  function onSearchSubmit(data){
-    setSearchFilter(data)
+  function onSearchSubmit(data) {
+    setSearchFilter(data);
   }
 
-  console.log(queryStr);
-
   const pagesCount =
-  moviesData?.movies?.totalPages <= 500 ? moviesData?.movies?.totalPages : 500;
+    moviesData?.movies?.totalPages <= 500
+      ? moviesData?.movies?.totalPages
+      : 500;
 
   const pagesSearchCount =
-  data?.search?.totalPages <= 500 ? data?.search?.totalPages : 500;
-
+    data?.search?.totalPages <= 500 ? data?.search?.totalPages : 500;
 
   return (
     <Box sx={{ flexGrow: 1, marginTop: 2 }}>
       <Grid container spacing={2}>
-      <Grid item xs={12} md={8}>
-      <Paper>
+        <Grid item xs={12} md={8}>
+          <Paper>
             <Search onSubmit={onSearchSubmit} />
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
-        
           <Paper>
             <Filters onSubmit={onSubmit} initialValues={filter} />
           </Paper>
@@ -96,7 +101,6 @@ export const Home = () => {
             <Box sx={{ flexGrow: 1, padding: 2 }}>
               {loading && <Loader />}
               {searchLoading && <Loader />}
-
               {moviesData && (
                 <>
                   <Stack spacing={2}>
@@ -109,23 +113,39 @@ export const Home = () => {
                     />
                   </Stack>
                   <Grid container spacing={1}>
-                    {isSearchEmpty ? moviesData.movies.results.map((movie) => (
-                      <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-                        <MovieCard
-                          movie={movie}
-                          onCardSelect={selectMovie}
-                          deleteMovie={deleteMovie}
-                        />
-                      </Grid>
-                    )) : data?.search?.results.map((movie) => (
-                      <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-                        <MovieCard
-                          movie={movie}
-                          onCardSelect={selectMovie}
-                          deleteMovie={deleteMovie}
-                        />
-                      </Grid>
-                    ))}
+                    {isSearchEmpty
+                      ? moviesData.movies.results.map((movie) => (
+                          <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            key={movie.id}
+                          >
+                            <MovieCard
+                              movie={movie}
+                              onCardSelect={selectMovie}
+                              deleteMovie={deleteMovie}
+                            />
+                          </Grid>
+                        ))
+                      : data?.search?.results.map((movie) => (
+                          <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            key={movie.id}
+                          >
+                            <MovieCard
+                              movie={movie}
+                              onCardSelect={selectMovie}
+                              deleteMovie={deleteMovie}
+                            />
+                          </Grid>
+                        ))}
                   </Grid>
                 </>
               )}

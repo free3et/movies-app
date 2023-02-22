@@ -1,6 +1,8 @@
 const axios = require("axios");
 const { Movies } = require("./movies/Movies");
 const { Genre } = require("./movies/Genre");
+const { Trailers } = require("./movies/Trailers");
+
 const { API_KEY, API_URL } = require("../config/constants");
 
 /* const getPopular = async (page, language) => {
@@ -33,13 +35,19 @@ const getGenres = async (language) => {
 };
 
 const searchMovie = async (queryStr, language) => {
-
   const searchMovies = await axios.get(
     `${API_URL}/search/movie?api_key=${API_KEY}&language=${language}&page=${queryStr.page}&include_adult=${queryStr.includeAdult}&query=${queryStr.query}}`
   );
 
   return new Movies(searchMovies.data);
+};
 
+const getTrailer = async (id, language) => {
+  const searchTrailer = await axios.get(
+    `${API_URL}/movie/${id}/videos?api_key=${API_KEY}&language=${language}`
+  );
+
+  return new Trailers(searchTrailer.data);
 };
 
 module.exports = {
@@ -48,4 +56,5 @@ module.exports = {
   discoverMovies,
   getGenres,
   searchMovie,
+  getTrailer,
 };

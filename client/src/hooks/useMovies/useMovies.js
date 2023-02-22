@@ -3,6 +3,7 @@ import { MAX_SELECTED_MOVIES } from "../../config/constants";
 
 export const useMovies = () => {
   const [selectedMovies, setSelectedMovies] = useState([]);
+  //const [id, setSingleMovieId] = useState(1)
 
   const selectMovie = useCallback(
     (movie) => {
@@ -23,9 +24,19 @@ export const useMovies = () => {
     [selectedMovies]
   );
 
+  /*   const getDetails = useCallback(
+    (movie) => {
+      setSingleMovieId(+movie.id);
+
+    },
+    [id]
+  ); */
+
   return {
     selectedMovies,
     selectMovie,
     deleteMovie,
+    /* getDetails,
+    id */
   };
 };
