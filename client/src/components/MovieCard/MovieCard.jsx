@@ -22,7 +22,6 @@ export const MovieCard = ({
   onCardSelect,
   deleteMovie,
   isPreviewMode,
-  onGetDetails,
 }) => {
   return (
     <Card sx={{ maxWidth: 250, position: "relative" }}>

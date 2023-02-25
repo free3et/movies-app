@@ -5,6 +5,7 @@ type Query {
   search(queryStr: SearchFilter): Movies
   getSingleMovie(id: Int!): Movie!
   getTrailers(id: Int!): Trailers
+  getPerson(id: Int!): Person
 }
 
 input MoviesFilter {
@@ -67,4 +68,15 @@ type Trailer {
   key: String!
   name: String!
   type: String
+}
+
+type Person {
+  biography: String!
+  birthday: String!
+  deathday: String
+  gender: Int
+  homepage: String
+  name: String!
+  placeOfBirth: String
+  profilePath: String
 }

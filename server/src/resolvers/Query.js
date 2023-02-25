@@ -4,6 +4,7 @@ const {
   getGenres,
   searchMovie,
   getTrailer,
+  getPersonInfo,
 } = require("../modules/responses");
 const { Movie } = require("../modules/movies/Movie");
 
@@ -36,8 +37,13 @@ async function search(parent, args, { locale }) {
 
 async function getTrailers(parent, { id }, { locale }) {
   const trailer = await getTrailer(id, locale);
-  console.log(trailer);
   return trailer;
+}
+
+async function getPerson(parent, { id }, { locale }) {
+  const person = await getPersonInfo(id, locale);
+  console.log(person);
+  return person;
 }
 
 module.exports = {
@@ -47,4 +53,5 @@ module.exports = {
   search,
   getSingleMovie,
   getTrailers,
+  getPerson,
 };

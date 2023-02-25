@@ -18,6 +18,7 @@ root.render(
 
 reportWebVitals();
 
+// add page for each person
 // section top popular on home
 // add to watchlist?
 // add slider on home?

@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { MOVIE_BY_ID } from "./queries";
 import { API_BASE_URL, IMG_FULL_SIZE, IMG_PATH } from "../../config/constants";
 import { useState, useEffect, useContext } from "react";
 import Box from "@mui/material/Box";
@@ -15,10 +14,10 @@ import { AppContext } from "../../context";
 
 import { theme } from "../../theme";
 import { Button } from "@mui/material";
-
 import { DateGenresTime } from "./components/DateGanresTime";
 import { TableAverageBudget } from "./components/TableAverageBudget";
 import { Companies } from "./components/Companies";
+import { Slider } from "./components/Slider";
 
 export const SingleMovie = () => {
   const [response, setResponse] = useState({});
@@ -62,7 +61,7 @@ export const SingleMovie = () => {
 
   useEffect(() => {
     fetch(
-      `${API_BASE_URL}/movie/${id}?api_key=1ff4ddf105b2910f49fe4bc6cf81723d&language=${state.locale}`
+      `${API_BASE_URL}/movie/${id}?api_key=1ff4ddf105b2910f49fe4bc6cf81723d&language=${state.locale}&append_to_response=credits`
     )
       .then((response) => {
         // Networks errors
@@ -95,7 +94,22 @@ export const SingleMovie = () => {
     runtime,
     tagline,
     vote_average,
+    credits,
   } = response;
+
+  function compare(a, b) {
+    if (a.popularity > b.popularity) {
+      return -1;
+    }
+    if (a.popularity < b.popularity) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const sortedCastCompare = credits?.cast.sort(compare);
+
+  const sortedCast = sortedCastCompare?.filter((item) => item.popularity > 8);
 
   const MovieInfo = styled(Box)(() => ({
     height: "500",
@@ -126,55 +140,58 @@ export const SingleMovie = () => {
     <Container maxWidth="xl" disableGutters>
       <MovieInfo>
         <Grid container spacing={2} sx={{ zIndex: 1, color: "white" }}>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <CardMedia
               component="img"
               height="450"
-              width="250"
+              width="auto"
               image={`${IMG_PATH}${poster_path}`}
               alt={title}
-              /*    style={{
-                height: "70px",
-                width: "200px",
-
-                padding: "5px",
-              }} */
               sx={{ borderRadius: "5px", objectFit: "contain" }}
             />
           </Grid>
-          <Grid item xs={8}>
-            <Typography variant="h2" gutterBottom component="h2">
-              {title}
-            </Typography>
+          <Grid item xs={9}>
+            <Box ml={3}>
+              <Typography variant="h2" gutterBottom component="h2">
+                {title}
+              </Typography>
 
-            <DateGenresTime
-              release_date={release_date}
-              genres={genres}
-              runtime={runtime}
-            />
+              <DateGenresTime
+                release_date={release_date}
+                genres={genres}
+                runtime={runtime}
+              />
 
-            <Button href={homepage} variant="outlined" color="success">
-              Movie Home page
-            </Button>
+              {homepage && (
+                <Button href={homepage} variant="outlined" color="success">
+                  Movie Home page
+                </Button>
+              )}
 
-            <Typography mb={0} variant="h3" gutterBottom component="h3">
-              Tagline: {tagline}
-            </Typography>
-            <Typography mb={0} variant="subtitle2" gutterBottom component="h3">
-              Overview: {overview}
-            </Typography>
+              <Typography mb={0} variant="h3" gutterBottom component="h3">
+                Tagline: {tagline}
+              </Typography>
+              <Typography
+                mb={0}
+                variant="subtitle2"
+                gutterBottom
+                component="h3"
+              >
+                Overview: {overview}
+              </Typography>
 
-            <TableAverageBudget
-              vote_average={vote_average}
-              budget={budget}
-              revenue={revenue}
-            />
+              <TableAverageBudget
+                vote_average={vote_average}
+                budget={budget}
+                revenue={revenue}
+              />
+            </Box>
           </Grid>
         </Grid>
       </MovieInfo>
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          <Box m={3}>
+          <Box m={3} ml={4}>
             <iframe
               width="100%"
               height="480"
@@ -189,6 +206,26 @@ export const SingleMovie = () => {
         <Grid item xs={4}>
           <Companies production_companies={production_companies} />
         </Grid>
+      </Grid>
+      <Typography
+        mb={3}
+        variant="h2"
+        gutterBottom
+        component="h3"
+        align="center"
+      >
+        Top Billed Cast
+      </Typography>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{
+          background:
+            "linear-gradient(to right, rgba(31.5, 31.5, 52.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 31.5, 52.5, 0.84) 60%, rgba(31.5, 31.5, 52.5, 0.84) 100%)",
+          padding: "20px 0",
+        }}
+      >
+        <Slider sortedCast={sortedCast} />
       </Grid>
     </Container>
   );

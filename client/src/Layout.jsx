@@ -21,6 +21,7 @@ import { Recomendations } from "./pages/Recomendations/Recomendations";
 import { SingleMovie } from "./components/SingleMovie/SingleMovie";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { theme } from "./theme";
+import { PersonPage } from "./components/PersonPage.jsx/PersonPage";
 
 function Layout() {
   const { state } = useContext(AppContext);
@@ -63,6 +64,7 @@ function Layout() {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/recomendations" element={<Recomendations />} />
                 <Route path="/movie/:id" element={<SingleMovie />} />
+                <Route path="/person/:id" element={<PersonPage />} />
               </Routes>
             </Container>
           </Box>
