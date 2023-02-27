@@ -5,6 +5,7 @@ const {
   searchMovie,
   getTrailer,
   getPersonInfo,
+  getPersonCasts,
 } = require("../modules/responses");
 const { Movie } = require("../modules/movies/Movie");
 

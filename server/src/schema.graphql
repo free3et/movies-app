@@ -79,4 +79,17 @@ type Person {
   name: String!
   placeOfBirth: String
   profilePath: String
+  credits: Casts
+}
+
+type Casts {
+  cast: [Cast]
+}
+
+type Cast {
+  title: String
+  posterPath: String
+  character: String
+  releaseDate: String
+  voteAverage: Float
 }

@@ -5,6 +5,7 @@ const { Trailers } = require("./movies/Trailers");
 const { Person } = require("./movies/Person");
 
 const { API_KEY, API_URL } = require("../config/constants");
+const { Casts } = require("./movies/Casts");
 
 /* const getPopular = async (page, language) => {
   const result = await axios.get(
@@ -55,6 +56,8 @@ const getPersonInfo = async (id, language) => {
   const searchPerson = await axios.get(
     `${API_URL}/person/${id}?api_key=${API_KEY}&language=${language}&append_to_response=credits`
   );
+
+  //console.log(searchPerson.data);
 
   return new Person(searchPerson.data);
 };

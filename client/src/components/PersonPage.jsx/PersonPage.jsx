@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-
+import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -15,10 +15,9 @@ import { PERSON_BY_ID } from "../PersonPage.jsx/queries";
 import { useQuery } from "@apollo/client";
 import { IMG_PATH, IMG_FULL_SIZE } from "../../config/constants";
 import CakeIcon from "@mui/icons-material/Cake";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import TodayIcon from "@mui/icons-material/Today";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import WcIcon from "@mui/icons-material/Wc";
+import { Casts } from "../SingleMovie/components/Casts";
 
 export const PersonPage = () => {
   const params = useParams();
@@ -33,6 +32,8 @@ export const PersonPage = () => {
     variables: { id },
   });
 
+  console.log(personData);
+
   const itemPerson = personData?.getPerson;
 
   if (!itemPerson) return;
@@ -46,6 +47,7 @@ export const PersonPage = () => {
     name,
     placeOfBirth,
     profilePath,
+    credits,
   } = itemPerson;
   console.log(personData?.getPerson);
 
@@ -90,61 +92,101 @@ export const PersonPage = () => {
   }
 
   return (
-    <Container maxWidth="xl" disableGutters>
-      <PersonInfo>
-        <Grid container spacing={2} sx={{ zIndex: 1, color: "white" }}>
-          <Grid item xs={3}>
+    <>
+      <Container maxWidth="xl" disableGutters>
+        <PersonInfo>
+          <Grid container spacing={2} sx={{ zIndex: 1, color: "white" }}>
+            <Grid item xs={3}>
+              <CardMedia
+                component="img"
+                height="450"
+                width="auto"
+                image={`${IMG_PATH}/${profilePath}`}
+                alt={name}
+                sx={{ borderRadius: "5px", objectFit: "contain" }}
+              />
+            </Grid>
+            <Grid item xs={9}>
+              <Box ml={3}>
+                <Typography variant="h2" gutterBottom component="h2">
+                  {name}
+                </Typography>
+
+                <Typography mb={2} variant="h4" gutterBottom component="h3">
+                  <CakeIcon
+                    sx={{ fontSize: 22, position: "relative", top: 4 }}
+                  />
+                  &nbsp;
+                  {birthday} ({getAge(birthday)} years) &nbsp;&#8226;&nbsp;
+                  {deathday && { deathday }}
+                  <LocationCityIcon
+                    sx={{ fontSize: 22, position: "relative", top: 3 }}
+                  />
+                  &nbsp;Place of Birth: {placeOfBirth}
+                  &nbsp;&#8226;&nbsp;
+                  <WcIcon sx={{ fontSize: 22, position: "relative", top: 4 }} />
+                  &nbsp;
+                  {gender === 1 ? "Female" : "Man"}
+                </Typography>
+
+                {homepage && (
+                  <Button href={homepage} variant="outlined" color="success">
+                    Home page
+                  </Button>
+                )}
+                <Typography mt={1} variant="h3" gutterBottom component="h3">
+                  Biography:
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  gutterBottom
+                  component="h3"
+                  dangerouslySetInnerHTML={{ __html: replaceWithBr() }}
+                ></Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </PersonInfo>
+      </Container>
+      <Typography
+        mb={3}
+        variant="h2"
+        gutterBottom
+        component="h3"
+        align="center"
+      >
+        Top Billed Cast
+      </Typography>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{
+          padding: "20px 0",
+        }}
+      >
+        {credits?.cast.map((cast, index) => (
+          <Card
+            sx={{
+              width: 200,
+              margin: "9px",
+            }}
+          >
             <CardMedia
               component="img"
-              height="450"
-              width="auto"
-              image={`${IMG_PATH}/${profilePath}`}
-              alt={name}
-              sx={{ borderRadius: "5px", objectFit: "contain" }}
+              height="260"
+              image={`${IMG_PATH}${cast.posterPath}`}
+              alt={cast.title}
             />
-          </Grid>
-          <Grid item xs={9}>
-            <Box ml={3}>
-              <Typography variant="h2" gutterBottom component="h2">
-                {name}
+            <CardContent>
+              {/* <Link to={`/person/${person.id}`}>{person.name}</Link> */}
+              <Typography variant="subtitle2" gutterBottom component="h3">
+                Character: {cast.character}
               </Typography>
-
-              <Typography mb={2} variant="h4" gutterBottom component="h3">
-                <CakeIcon sx={{ fontSize: 22, position: "relative", top: 4 }} />
-                &nbsp;
-                {birthday} ({getAge(birthday)} years) &nbsp;&#8226;&nbsp;
-                {deathday && { deathday }}
-                <LocationCityIcon
-                  sx={{ fontSize: 22, position: "relative", top: 3 }}
-                />
-                &nbsp;Place of Birth: {placeOfBirth}
-                &nbsp;&#8226;&nbsp;
-                <WcIcon sx={{ fontSize: 22, position: "relative", top: 4 }} />
-                &nbsp;
-                {gender === 1 ? "Female" : "Man"}
-              </Typography>
-
-              {homepage && (
-                <Button href={homepage} variant="outlined" color="success">
-                  Home page
-                </Button>
-              )}
-              <Typography mt={1} variant="h3" gutterBottom component="h3">
-                Biography:
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                gutterBottom
-                component="h3"
-                dangerouslySetInnerHTML={{ __html: replaceWithBr() }}
-              ></Typography>
-
-              {/*  <TableAverageBudget /> */}
-            </Box>
-          </Grid>
-        </Grid>
-      </PersonInfo>
-    </Container>
+            </CardContent>
+          </Card>
+        ))}
+      </Grid>
+    </>
   );
 };
 

@@ -17,7 +17,7 @@ import { Button } from "@mui/material";
 import { DateGenresTime } from "./components/DateGanresTime";
 import { TableAverageBudget } from "./components/TableAverageBudget";
 import { Companies } from "./components/Companies";
-import { Slider } from "./components/Slider";
+import { Casts } from "./components/Casts";
 
 export const SingleMovie = () => {
   const [response, setResponse] = useState({});
@@ -225,7 +225,7 @@ export const SingleMovie = () => {
           padding: "20px 0",
         }}
       >
-        <Slider sortedCast={sortedCast} />
+        <Casts sortedCast={sortedCast} />
       </Grid>
     </Container>
   );

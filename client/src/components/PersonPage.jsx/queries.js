@@ -11,6 +11,15 @@ export const PERSON_BY_ID = gql`
       name
       placeOfBirth
       profilePath
+      credits {
+        cast {
+          title
+          character
+          releaseDate
+          voteAverage
+          posterPath
+        }
+      }
     }
   }
 `;

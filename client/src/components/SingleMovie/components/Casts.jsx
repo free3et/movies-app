@@ -7,7 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
 
-export const Slider = ({ sortedCast }) => {
+export const Casts = ({ sortedCast }) => {
   return (
     <>
       {sortedCast?.map((person, index) => (
