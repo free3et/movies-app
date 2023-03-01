@@ -16,6 +16,7 @@ export const Casts = ({ sortedCast }) => {
             width: 200,
             margin: "9px",
           }}
+          key={index}
         >
           <CardMedia
             component="img"

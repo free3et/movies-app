@@ -56,9 +56,6 @@ const getPersonInfo = async (id, language) => {
   const searchPerson = await axios.get(
     `${API_URL}/person/${id}?api_key=${API_KEY}&language=${language}&append_to_response=credits`
   );
-
-  //console.log(searchPerson.data);
-
   return new Person(searchPerson.data);
 };
 

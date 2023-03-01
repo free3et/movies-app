@@ -18,7 +18,9 @@ root.render(
 
 reportWebVitals();
 
-// add page for each person
+//try to add images on person page
+// add sharing on person page
+// footer
 // section top popular on home
 // add to watchlist?
 // add slider on home?

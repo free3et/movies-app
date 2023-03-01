@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { lightBlue } from "@mui/material/colors";
 
 export const theme = createTheme({
   palette: {
@@ -24,10 +25,20 @@ export const theme = createTheme({
     text: {
       hint: "rgba(0,0,0,0.5)",
     },
+    action: {
+      active: lightBlue[200],
+      activeOpacity: 1,
+      hover: lightBlue[100],
+      hoverOpacity: 0.7,
+      focus: lightBlue[600],
+      focusOpacity: 1,
+      selected: lightBlue[300],
+      selectedOpacity: 1,
+    },
   },
   typography: {
-    fontSize: "1.5em",
-    htmlFontSize: "1.5em",
+    fontSize: 1.75,
+    htmlFontSize: 1.5,
     fontFamily: "Source Sans Pro",
     h1: {
       fontSize: "2.5em",
@@ -66,7 +77,11 @@ export const theme = createTheme({
       fontWeight: 700,
     },
     button: {
-      fontSize: "1em",
+      fontSize: "0.9em",
+    },
+    a: {
+      color: "#1ed5a9",
+      textDecoration: "none",
     },
   },
   shape: {

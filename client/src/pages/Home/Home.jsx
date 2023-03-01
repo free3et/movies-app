@@ -18,6 +18,7 @@ import { Filters } from "../../components/Filters/Filters";
 import { useFilters } from "../../hooks/useMovies/useFilters";
 import { useSearch } from "../../hooks/useMovies/useSearch";
 import { Search } from "../../components/Search/Search";
+import { PersonPage } from "../../components/PersonPage.jsx/PersonPage";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
   backgroundColor: "#fff",

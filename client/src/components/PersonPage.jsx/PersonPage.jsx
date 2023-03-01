@@ -18,6 +18,7 @@ import CakeIcon from "@mui/icons-material/Cake";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import WcIcon from "@mui/icons-material/Wc";
 import { Casts } from "../SingleMovie/components/Casts";
+import { Link } from "react-router-dom";
 
 export const PersonPage = () => {
   const params = useParams();
@@ -49,7 +50,7 @@ export const PersonPage = () => {
     profilePath,
     credits,
   } = itemPerson;
-  console.log(personData?.getPerson);
+  console.log(itemPerson);
 
   const PersonInfo = styled(Box)(() => ({
     height: "500",
@@ -90,6 +91,24 @@ export const PersonPage = () => {
   function replaceWithBr() {
     return biography.replace(/\n/g, "<br />");
   }
+
+  function compare(a, b) {
+    if (+a.popularity > +b.popularity) {
+      return -1;
+    }
+    if (+a.popularity < +b.popularity) {
+      return 1;
+    }
+    return 0;
+  }
+
+  const copyData = [...credits?.cast];
+
+  const sortedMoviesCompare = copyData.sort(compare);
+
+  const sortedMovies = sortedMoviesCompare?.filter(
+    (item) => item.popularity > 10
+  );
 
   return (
     <>
@@ -155,7 +174,7 @@ export const PersonPage = () => {
         component="h3"
         align="center"
       >
-        Top Billed Cast
+        Most Famous Movies
       </Typography>
       <Grid
         container
@@ -164,8 +183,9 @@ export const PersonPage = () => {
           padding: "20px 0",
         }}
       >
-        {credits?.cast.map((cast, index) => (
+        {sortedMovies?.map((cast, index) => (
           <Card
+            key={cast.title}
             sx={{
               width: 200,
               margin: "9px",
@@ -174,13 +194,20 @@ export const PersonPage = () => {
             <CardMedia
               component="img"
               height="260"
-              image={`${IMG_PATH}${cast.posterPath}`}
+              image={`${IMG_PATH}/${cast.image}`}
+              //image={`${IMG_PATH}${cast.posterPath}`}
               alt={cast.title}
             />
             <CardContent>
-              {/* <Link to={`/person/${person.id}`}>{person.name}</Link> */}
+              <Link to={`/movie/${cast.id}`}>Info</Link>
+              <Typography variant="h4" gutterBottom component="h4">
+                {cast.title}
+              </Typography>
               <Typography variant="subtitle2" gutterBottom component="h3">
                 Character: {cast.character}
+              </Typography>
+              <Typography variant="subtitle2" gutterBottom component="h3">
+                Vote: {cast.voteAverage}
               </Typography>
             </CardContent>
           </Card>
@@ -189,41 +216,6 @@ export const PersonPage = () => {
     </>
   );
 };
-
-{
-  /*    <Card sx={{ maxWidth: 250, position: "relative" }}>
-      <CardMedia
-        component="img"
-        height="250"
-        image={movie.image}
-        alt={movie.title}
-      />
-      <CardInfo>
-        <Typography
-          variant="subtitle1"
-          gutterBottom
-          style={{
-            display: "flex",
-            alignItems: "center",
-            minHeight: 55,
-            fontWeight: 700,
-            lineHeight: 1.25,
-          }}
-          component="h2"
-        >
-          {movie.title}
-        </Typography>
-
-        <Typography mb={0} variant="subtitle2" gutterBottom component="h3">
-          {movie.voteAverage}
-        </Typography>
-        <Typography mb={0} variant="subtitle2" gutterBottom component="h3">
-          {movie.releaseDate}
-        </Typography>
-      </CardInfo>
-      <Link to={`/movie/${movie.id}`}>Info</Link>
-    </Card> */
-}
 
 /* MovieCard.propTypes = {
   movie: PropTypes.shape({

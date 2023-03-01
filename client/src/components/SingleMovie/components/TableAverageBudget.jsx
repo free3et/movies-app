@@ -47,9 +47,9 @@ export const TableAverageBudget = ({ vote_average, budget, revenue }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <TableRow
-              key={row.vote}
+              key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row" align="center">

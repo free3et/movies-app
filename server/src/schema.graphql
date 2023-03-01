@@ -3,7 +3,7 @@ type Query {
   moviesByIds(ids: [Int]): [Movie]
   genres: [Genre]
   search(queryStr: SearchFilter): Movies
-  getSingleMovie(id: Int!): Movie!
+  getSingleMovie(id: Int!): Movie
   getTrailers(id: Int!): Trailers
   getPerson(id: Int!): Person
 }
@@ -83,13 +83,15 @@ type Person {
 }
 
 type Casts {
-  cast: [Cast]
+  cast: [Cast!]!
 }
 
 type Cast {
-  title: String
+  id: Int
+  title: String!
   posterPath: String
-  character: String
+  character: String!
   releaseDate: String
   voteAverage: Float
+  popularity: Float
 }

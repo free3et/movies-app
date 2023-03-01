@@ -18,6 +18,8 @@ import { DateGenresTime } from "./components/DateGanresTime";
 import { TableAverageBudget } from "./components/TableAverageBudget";
 import { Companies } from "./components/Companies";
 import { Casts } from "./components/Casts";
+import { Crew } from "./components/Crew";
+import Divider from "@mui/material/Divider";
 
 export const SingleMovie = () => {
   const [response, setResponse] = useState({});
@@ -109,7 +111,19 @@ export const SingleMovie = () => {
 
   const sortedCastCompare = credits?.cast.sort(compare);
 
-  const sortedCast = sortedCastCompare?.filter((item) => item.popularity > 8);
+  const sortedCast = sortedCastCompare?.filter((item) => item.popularity > 9);
+
+  const sortedCrewCompare = credits?.crew.sort(compare);
+
+  const sortedCrew = sortedCrewCompare?.filter((item) => item.popularity > 10);
+  console.log(sortedCrew);
+
+  const a = sortedCrew?.sort((item) => item.id);
+
+  const b = a?.filter((item) => {
+    const arr = [];
+  });
+  console.log(a);
 
   const MovieInfo = styled(Box)(() => ({
     height: "500",
@@ -185,28 +199,35 @@ export const SingleMovie = () => {
                 budget={budget}
                 revenue={revenue}
               />
+
+              <Grid container spacing={1} gap={3}>
+                <Crew sortedCrew={sortedCrew} />
+              </Grid>
             </Box>
+          </Grid>
+          <Grid container spacing={2}>
+            <Grid item xs={12} textAlign="center">
+              <Box m={3} ml={4}>
+                <iframe
+                  width="700px"
+                  height="400px"
+                  src={`https://www.youtube.com/embed/${firstTrailer?.key}?controls=1`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
       </MovieInfo>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <Box m={3} ml={4}>
-            <iframe
-              width="100%"
-              height="480"
-              src={`https://www.youtube.com/embed/${firstTrailer?.key}?controls=1`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-          </Box>
-        </Grid>
-        <Grid item xs={4}>
+      <Container maxWidth="lg">
+        <Grid item xs={12}>
           <Companies production_companies={production_companies} />
         </Grid>
-      </Grid>
+      </Container>
+
       <Typography
         mb={3}
         variant="h2"

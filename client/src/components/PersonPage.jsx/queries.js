@@ -13,11 +13,13 @@ export const PERSON_BY_ID = gql`
       profilePath
       credits {
         cast {
+          id
           title
           character
           releaseDate
           voteAverage
-          posterPath
+          image: posterPath
+          popularity
         }
       }
     }
