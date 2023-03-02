@@ -84,6 +84,7 @@ type Person {
 
 type Casts {
   cast: [Cast!]!
+  crew: [Crew!]!
 }
 
 type Cast {
@@ -94,4 +95,15 @@ type Cast {
   releaseDate: String
   voteAverage: Float
   popularity: Float
+}
+
+type Crew {
+  id: Int
+  title: String!
+  posterPath: String
+  releaseDate: String
+  voteAverage: Float
+  popularity: Float
+  department: String
+  job: String
 }

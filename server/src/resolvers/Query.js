@@ -43,6 +43,7 @@ async function getTrailers(parent, { id }, { locale }) {
 
 async function getPerson(parent, { id }, { locale }) {
   const person = await getPersonInfo(id, locale);
+
   return person;
 }
 

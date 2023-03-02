@@ -51,14 +51,14 @@ export const theme = createTheme({
       lineHeight: 1.41,
     },
     h3: {
-      fontSize: "1.2em",
+      fontSize: "1.3em",
       fontWeight: 500,
       lineHeight: 2.5,
       fontStyle: "italic",
     },
     h4: {
-      fontSize: "1.15em",
-      fontWeight: 500,
+      fontSize: "1.25em",
+      fontWeight: 700,
       lineHeight: 1.25,
       marginBottom: 1,
     },
@@ -77,7 +77,8 @@ export const theme = createTheme({
       fontWeight: 700,
     },
     button: {
-      fontSize: "0.9em",
+      fontSize: "0.8em",
+      fontWeight: 600,
     },
     a: {
       color: "#1ed5a9",

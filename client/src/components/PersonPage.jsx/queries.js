@@ -21,6 +21,16 @@ export const PERSON_BY_ID = gql`
           image: posterPath
           popularity
         }
+        crew {
+          id
+          title
+          releaseDate
+          voteAverage
+          img: posterPath
+          popularity
+          department
+          job
+        }
       }
     }
   }

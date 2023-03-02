@@ -19,6 +19,13 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import WcIcon from "@mui/icons-material/Wc";
 import { Casts } from "../SingleMovie/components/Casts";
 import { Link } from "react-router-dom";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import { Crew } from "./components/Crew";
 
 export const PersonPage = () => {
   const params = useParams();
@@ -32,8 +39,6 @@ export const PersonPage = () => {
   } = useQuery(PERSON_BY_ID, {
     variables: { id },
   });
-
-  console.log(personData);
 
   const itemPerson = personData?.getPerson;
 
@@ -50,7 +55,6 @@ export const PersonPage = () => {
     profilePath,
     credits,
   } = itemPerson;
-  console.log(itemPerson);
 
   const PersonInfo = styled(Box)(() => ({
     height: "500",
@@ -102,13 +106,42 @@ export const PersonPage = () => {
     return 0;
   }
 
-  const copyData = [...credits?.cast];
+  const copyDataMovies = [...credits?.cast];
 
-  const sortedMoviesCompare = copyData.sort(compare);
+  const sortedMoviesCompare = copyDataMovies.sort(compare);
 
   const sortedMovies = sortedMoviesCompare?.filter(
-    (item) => item.popularity > 10
+    (item) => item.popularity > 12
   );
+
+  const copyDataCrew = [...credits?.crew];
+  const sortedCrewCompare = copyDataCrew.sort(compare);
+  const sortedCrew = sortedCrewCompare?.filter((item) => item.popularity > 9);
+
+  // Sort crew for departments
+  const department = sortedCrew?.filter(
+    (item) => item.department === "Directing"
+  );
+  const production = sortedCrew?.filter(
+    (item) => item.department === "Production"
+  );
+  const writing = sortedCrew?.filter((item) => item.department === "Writing");
+  const art = sortedCrew?.filter((item) => item.department === "Art");
+  const editing = sortedCrew?.filter((item) => item.department === "Editing");
+  const visualEffects = sortedCrew?.filter(
+    (item) => item.department === "Visual Effects"
+  );
+  const creator = sortedCrew?.filter((item) => item.department === "Creator");
+
+  const departmentArr = {
+    department,
+    production,
+    writing,
+    art,
+    editing,
+    visualEffects,
+    creator,
+  };
 
   return (
     <>
@@ -167,52 +200,50 @@ export const PersonPage = () => {
           </Grid>
         </PersonInfo>
       </Container>
-      <Typography
-        mb={3}
-        variant="h2"
-        gutterBottom
-        component="h3"
-        align="center"
-      >
-        Most Famous Movies
+      <Typography m={3} variant="h2" gutterBottom component="h3" align="center">
+        Known for
       </Typography>
-      <Grid
-        container
-        justifyContent="center"
-        sx={{
-          padding: "20px 0",
-        }}
-      >
-        {sortedMovies?.map((cast, index) => (
-          <Card
-            key={cast.title}
-            sx={{
-              width: 200,
-              margin: "9px",
-            }}
-          >
-            <CardMedia
-              component="img"
-              height="260"
-              image={`${IMG_PATH}/${cast.image}`}
-              //image={`${IMG_PATH}${cast.posterPath}`}
-              alt={cast.title}
-            />
-            <CardContent>
-              <Link to={`/movie/${cast.id}`}>Info</Link>
-              <Typography variant="h4" gutterBottom component="h4">
-                {cast.title}
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom component="h3">
-                Character: {cast.character}
-              </Typography>
-              <Typography variant="subtitle2" gutterBottom component="h3">
-                Vote: {cast.voteAverage}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </Grid>
+      <Container maxWidth="xl">
+        <Typography component="h4" variant="h4" align="center" mb={3}>
+          Acting
+        </Typography>
+        <Grid container justifyContent="center" mb={3}>
+          {sortedMovies?.map((cast, index) => {
+            return (
+              <Card
+                key={index}
+                sx={{
+                  width: 290,
+                  margin: "7px",
+                }}
+              >
+                <CardContent>
+                  <Button color="success" variant="outlined">
+                    <Link
+                      to={`/movie/${cast.id}`}
+                      style={{
+                        color: "#031d33",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {cast.title}
+                    </Link>
+                  </Button>
+                  <Divider
+                    sx={{
+                      margin: "16px 10px 16px 0",
+                    }}
+                  />
+                  <Typography variant="subtitle2" gutterBottom component="h3">
+                    Character: {cast.character}
+                  </Typography>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </Grid>
+      </Container>
+      <Crew departmentArr={departmentArr} />
     </>
   );
 };
