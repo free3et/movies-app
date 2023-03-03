@@ -43,12 +43,12 @@ export const theme = createTheme({
     h1: {
       fontSize: "2.5em",
       fontWeight: 700,
-      lineHeight: 1.2,
+      lineHeight: 1.5,
     },
     h2: {
       fontSize: "2em",
       fontWeight: 700,
-      lineHeight: 1.41,
+      lineHeight: 1.5,
     },
     h3: {
       fontSize: "1.3em",
@@ -83,6 +83,19 @@ export const theme = createTheme({
     a: {
       color: "#1ed5a9",
       textDecoration: "none",
+    },
+  },
+  components: {
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          "&.Mui-selected": {
+            backgroundColor: "#ed9f35",
+            "&:hover": { background: "#1ed5a9" },
+            "&.Mui-focusVisible": { background: "#ed9f35" },
+          },
+        },
+      },
     },
   },
   shape: {

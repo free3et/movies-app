@@ -4,6 +4,8 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+
 import { styled } from "@mui/material/styles";
 import { CardMenu } from "../CardMenu/CardMenu";
 import { FavouriteIcon } from "./FavouriteIcon";
@@ -13,7 +15,7 @@ const CardInfo = styled(CardContent)(({ theme }) => ({
   padding: 10,
 
   "&:last-child": {
-    paddingBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(3),
   },
 }));
 
@@ -41,25 +43,22 @@ export const MovieCard = ({
 
       <CardMedia
         component="img"
-        height="250"
+        height="265"
         image={movie.image}
         alt={movie.title}
       />
       <CardInfo>
-        <Typography
-          variant="subtitle1"
-          gutterBottom
-          style={{
-            display: "flex",
-            alignItems: "center",
-            minHeight: 55,
-            fontWeight: 700,
-            lineHeight: 1.25,
-          }}
-          component="h2"
+        <Link
+          to={`/movie/${movie.id}`}
+          /*  style={{
+            color: "#031d33",
+            textDecoration: "none",
+            textTransform: "none",
+            fontWeight: 600,
+          }} */
         >
           {movie.title}
-        </Typography>
+        </Link>
 
         <Typography mb={0} variant="subtitle2" gutterBottom component="h3">
           {movie.voteAverage}

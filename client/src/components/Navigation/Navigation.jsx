@@ -32,14 +32,6 @@ export const Navigation = () => {
               <ListItemText primary={translate("moviesRecomendations")} />
             </ListItemButton>
           </Link>
-          <Link component={RouterLink} to={"/settings"}>
-            <ListItemButton>
-              <ListItemIcon>
-                <SettingsIcon />
-              </ListItemIcon>
-              <ListItemText primary={translate("settings")} />
-            </ListItemButton>
-          </Link>
         </ListItem>
       </List>
     </Box>

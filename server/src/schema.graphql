@@ -6,6 +6,7 @@ type Query {
   getSingleMovie(id: Int!): Movie
   getTrailers(id: Int!): Trailers
   getPerson(id: Int!): Person
+  getNowPlayingMovie: Playing
 }
 
 input MoviesFilter {
@@ -106,4 +107,17 @@ type Crew {
   popularity: Float
   department: String
   job: String
+}
+
+type Playing {
+  page: Int!
+  totalResults: Int!
+  totalPages: Int!
+  results: [Play!]!
+}
+
+type Play {
+  id: Int
+  title: String!
+  posterPath: String
 }

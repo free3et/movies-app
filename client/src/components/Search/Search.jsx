@@ -6,6 +6,7 @@ import { Loader } from "../Loader/Loader";
 import { SubmitBtn } from "../Filters/FiltersFields/SubmitBtn";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
+import { Grid } from "@mui/material";
 
 export const Search = ({ onSubmit }) => {
   return (
@@ -13,7 +14,13 @@ export const Search = ({ onSubmit }) => {
       onSubmit={onSubmit}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}>
+          <Paper
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              maxWidth: "630px",
+            }}
+          >
             <Field
               name="query"
               render={({ input, meta }) => (

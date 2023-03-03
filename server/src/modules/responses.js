@@ -6,6 +6,7 @@ const { Person } = require("./movies/Person");
 
 const { API_KEY, API_URL } = require("../config/constants");
 const { Casts } = require("./movies/Casts");
+const { Playing } = require("./movies/Playing");
 
 /* const getPopular = async (page, language) => {
   const result = await axios.get(
@@ -59,6 +60,14 @@ const getPersonInfo = async (id, language) => {
   return new Person(searchPerson.data);
 };
 
+const getNowPlaying = async (language) => {
+  const nowPlaying = await axios.get(
+    `${API_URL}/movie/now_playing?api_key=${API_KEY}&language=${language}&page=1`
+  );
+
+  return new Playing(nowPlaying.data);
+};
+
 module.exports = {
   //getPopular,
   getDetails,
@@ -67,4 +76,5 @@ module.exports = {
   searchMovie,
   getTrailer,
   getPersonInfo,
+  getNowPlaying,
 };

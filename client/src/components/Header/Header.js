@@ -43,7 +43,7 @@ export const Header = () => {
               <MenuIcon />
             </IconButton>
           </Hidden>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
             <Link to={"/home"} component={RouterLink} sx={{ color: "white" }}>
               <FormattedMessage id="home" />
             </Link>
@@ -56,27 +56,23 @@ export const Header = () => {
             >
               <FormattedMessage id="moviesRecomendations" />
             </Button>
-
-            <Button
-              component={RouterLink}
-              to={"/settings"}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              <FormattedMessage id="settings" />
-            </Button>
           </Box>
           <Box>
             <Button
-              disabled={state.locale === LOCALES.ENGLISH}
-              sx={{ my: 2, color: "white" }}
+              variant="outlined"
+              color="info"
+              //disabled={state.locale === LOCALES.ENGLISH}
+              sx={{ m: 1, color: "white" }}
               onClick={() => setLanguage(LOCALES.ENGLISH)}
             >
               English
             </Button>
 
             <Button
-              disabled={state.locale === LOCALES.UKRANIAN}
-              sx={{ my: 2, color: "white" }}
+              variant="outlined"
+              color="success"
+              //disabled={state.locale === LOCALES.UKRANIAN}
+              sx={{ m: 1, color: "white" }}
               onClick={() => setLanguage(LOCALES.UKRANIAN)}
             >
               Українська

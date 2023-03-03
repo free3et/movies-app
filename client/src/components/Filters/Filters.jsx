@@ -28,7 +28,7 @@ export const Filters = ({ onSubmit, initialValues }) => {
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
               }}
             >
               <Box

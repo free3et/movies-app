@@ -16,7 +16,6 @@ import { AppContext } from "./context/index";
 import { I18nProvider } from "./context/languageContext";
 import { Header } from "./components/Header/Header";
 import { Home } from "./pages/Home/Home";
-import { Settings } from "./pages/Settings/Settings";
 import { Recomendations } from "./pages/Recomendations/Recomendations";
 import { SingleMovie } from "./components/SingleMovie/SingleMovie";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
@@ -61,7 +60,6 @@ function Layout() {
             <Container maxWidth="xl" disableGutters>
               <Routes>
                 <Route path="/home" element={<Home />} />
-                <Route path="/settings" element={<Settings />} />
                 <Route path="/recomendations" element={<Recomendations />} />
                 <Route path="/movie/:id" element={<SingleMovie />} />
                 <Route path="/person/:id" element={<PersonPage />} />

@@ -15,16 +15,15 @@ export const SortDirectionsField = () => {
         <FormattedMessage id="sort_direction">
           {(placeholder) => (
             <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <FormLabel id="sort_direction">{placeholder}</FormLabel>
               <RadioGroup row name="sort_direction" {...input}>
                 <FormControlLabel
                   value={SORT_DIRECTION.ASC}
-                  control={<Radio />}
+                  control={<Radio size="small" />}
                   label={<FormattedMessage id="asc"></FormattedMessage>}
                 />
                 <FormControlLabel
                   value={SORT_DIRECTION.DESC}
-                  control={<Radio />}
+                  control={<Radio size="small" />}
                   label={<FormattedMessage id="desc"></FormattedMessage>}
                 />
               </RadioGroup>
