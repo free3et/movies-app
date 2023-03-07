@@ -7,6 +7,8 @@ export const MOVIES_QUERY_BY_IDS = gql`
       title
       image: posterPath
       releaseDate(format: "dd.MM.yyyy")
+      voteAverage
+      runtime
     }
   }
 `;

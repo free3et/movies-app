@@ -29,6 +29,7 @@ export const Filters = ({ onSubmit, initialValues }) => {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-around",
+                padding: "0 20px",
               }}
             >
               <Box

@@ -29,8 +29,8 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
-  height: "calc(100vh - 150px)",
-  overflow: "scroll",
+  //height: "calc(100vh - 150px)",
+  //overflow: "scroll",
   position: "sticky",
   top: theme.spacing(2),
 }));
@@ -98,7 +98,7 @@ export const Home = () => {
   const isSearchEmpty = data?.search?.results.length === 0;
 
   const paginationHandler = (event, page) => {
-    isSearchEmpty ? setPage(page) : setSearchPage(page);
+    isSearchEmpty ? setPage(+page) : setSearchPage(+page);
   };
 
   if (loading) return <Loader />;
@@ -151,7 +151,7 @@ export const Home = () => {
           </Grid>
         </SearchBg>
       </Container>
-      <Box sx={{ flexGrow: 1, marginTop: 2 }}>
+      <Box sx={{ flexGrow: 1, m: 2 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Paper elevation={3}>
@@ -160,71 +160,76 @@ export const Home = () => {
           </Grid>
 
           <Grid item xs={12} md={8}>
-            <Paper>
-              <Box sx={{ flexGrow: 1, padding: 2 }}>
-                {loading && <Loader />}
-                {searchLoading && <Loader />}
-                {moviesData && (
-                  <>
-                    <Stack spacing={2}>
-                      <Pagination
-                        sx={{
-                          m: 2,
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                        count={isSearchEmpty ? pagesCount : pagesSearchCount}
-                        shape="rounded"
-                        color="warning"
-                        page={isSearchEmpty ? filter.page : queryStr.page}
-                        onChange={paginationHandler}
-                      />
-                    </Stack>
-                    <Grid container spacing={1}>
-                      {isSearchEmpty
-                        ? moviesData.movies.results.map((movie) => (
-                            <Grid
-                              item
-                              xs={12}
-                              sm={6}
-                              md={4}
-                              lg={3}
-                              key={movie.id}
-                            >
-                              <MovieCard
-                                movie={movie}
-                                onCardSelect={selectMovie}
-                                deleteMovie={deleteMovie}
-                              />
-                            </Grid>
-                          ))
-                        : data?.search?.results.map((movie) => (
-                            <Grid
-                              item
-                              xs={12}
-                              sm={6}
-                              md={4}
-                              lg={3}
-                              key={movie.id}
-                            >
-                              <MovieCard
-                                movie={movie}
-                                onCardSelect={selectMovie}
-                                deleteMovie={deleteMovie}
-                              />
-                            </Grid>
-                          ))}
-                    </Grid>
-                  </>
-                )}
-              </Box>
-            </Paper>
+            <Box sx={{ flexGrow: 1, padding: 0.5 }}>
+              {loading && <Loader />}
+              {searchLoading && <Loader />}
+              {moviesData && (
+                <>
+                  <Stack spacing={2}>
+                    <Pagination
+                      sx={{
+                        m: "-5px 10px 25px",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                      count={isSearchEmpty ? pagesCount : pagesSearchCount}
+                      shape="rounded"
+                      color="warning"
+                      page={isSearchEmpty ? filter.page : queryStr.page}
+                      onChange={paginationHandler}
+                    />
+                  </Stack>
+                  <Grid container spacing={2}>
+                    {isSearchEmpty
+                      ? moviesData.movies.results.map((movie) => (
+                          <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            key={movie.id}
+                          >
+                            <MovieCard
+                              movie={movie}
+                              onCardSelect={selectMovie}
+                              deleteMovie={deleteMovie}
+                            />
+                          </Grid>
+                        ))
+                      : data?.search?.results.map((movie) => (
+                          <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={4}
+                            lg={3}
+                            key={movie.id}
+                          >
+                            <MovieCard
+                              movie={movie}
+                              onCardSelect={selectMovie}
+                              deleteMovie={deleteMovie}
+                            />
+                          </Grid>
+                        ))}
+                  </Grid>
+                </>
+              )}
+            </Box>
           </Grid>
           <Grid item xs={12} md={4}>
             <SelectedMovies>
-              <h2>
+              <Typography
+                mb={3}
+                variant="h4"
+                gutterBottom
+                component="h3"
+                align="center"
+              >
                 <FormattedMessage id="moviesRecomendations" />
-              </h2>
+              </Typography>
+
               <>
                 {!selectedMovies.length && (
                   <>
@@ -233,6 +238,7 @@ export const Home = () => {
                       alt={moviesData.movies.title}
                       style={{
                         width: "100%",
+                        padding: "0 20px 20px",
                       }}
                     />
                   </>

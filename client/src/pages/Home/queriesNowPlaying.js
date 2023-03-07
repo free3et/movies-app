@@ -10,6 +10,9 @@ export const NOW_PLAYING_QUERY = gql`
         id
         title
         image: posterPath
+        voteAverage
+        runtime
+        releaseDate
       }
     }
   }

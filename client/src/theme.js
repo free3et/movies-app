@@ -73,7 +73,7 @@ export const theme = createTheme({
       fontSize: "1.1em",
     },
     caption: {
-      fontSize: "1em",
+      fontSize: "0.8em",
       fontWeight: 700,
     },
     button: {

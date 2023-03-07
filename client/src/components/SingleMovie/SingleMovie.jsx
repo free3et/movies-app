@@ -19,7 +19,6 @@ import { TableAverageBudget } from "./components/TableAverageBudget";
 import { Companies } from "./components/Companies";
 import { Casts } from "./components/Casts";
 import { Crew } from "./components/Crew";
-import Divider from "@mui/material/Divider";
 
 export const SingleMovie = () => {
   const [response, setResponse] = useState({});
@@ -116,14 +115,6 @@ export const SingleMovie = () => {
   const sortedCrewCompare = credits?.crew.sort(compare);
 
   const sortedCrew = sortedCrewCompare?.filter((item) => item.popularity > 10);
-  console.log(sortedCrew);
-
-  const a = sortedCrew?.sort((item) => item.id);
-
-  const b = a?.filter((item) => {
-    const arr = [];
-  });
-  console.log(a);
 
   const MovieInfo = styled(Box)(() => ({
     height: "500",

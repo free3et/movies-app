@@ -19,7 +19,7 @@ export const SelectedMoviesForm = ({ onSubmit }) => {
       }}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <Paper sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}>
+          <Paper sx={{ display: "flex", alignItems: "center" }}>
             <Field
               name="listName"
               render={({ input, meta }) => (
@@ -39,10 +39,10 @@ export const SelectedMoviesForm = ({ onSubmit }) => {
             <IconButton
               type="submit"
               color="primary"
-              sx={{ p: "10px" }}
+              sx={{ m: "4px" }}
               aria-label="directions"
             >
-              <CheckIcon />
+              <CheckIcon sx={{ fontSize: "1.5rem" }} />
             </IconButton>
           </Paper>
         </form>

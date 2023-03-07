@@ -7,26 +7,45 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import { CardMenu } from "../CardMenu/CardMenu";
+import { styled } from "@mui/material/styles";
 
 export const MovieCardSelected = ({ movie, onCardDelete }) => {
+  console.log(movie);
+
+  const CardInfo = styled(CardContent)(({ theme }) => ({
+    "&:last-child": {
+      paddingBottom: theme.spacing(1),
+    },
+  }));
   return (
     <>
-      <Card sx={{ display: "flex", padding: 1, margin: 1, textAlign: "left" }}>
+      <Card
+        sx={{
+          display: "flex",
+          padding: "10px",
+          textAlign: "left",
+          position: "relative",
+        }}
+      >
+        <CardMenu>
+          <MenuItem onClick={() => onCardDelete(movie)}>
+            <FormattedMessage id="delete" />
+          </MenuItem>
+        </CardMenu>
         <CardMedia
           component="img"
-          sx={{ width: 100 }}
+          sx={{ width: 120 }}
           image={movie.image}
           alt={movie.title}
         />
+
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "100%",
-            position: "relative",
           }}
         >
-          <CardContent sx={{ flex: "1 0 auto" }}>
+          <CardInfo sx={{ flex: "1 0 auto" }}>
             <Typography
               component="div"
               variant="subtitle1"
@@ -38,36 +57,18 @@ export const MovieCardSelected = ({ movie, onCardDelete }) => {
               {movie.title}
             </Typography>
             <Typography
-              variant="subtitle1"
-              color="text.secondary"
+              mt={1}
+              variant="caption"
+              gutterBottom
               component="h3"
+              color="info"
             >
               {movie.releaseDate}
             </Typography>
-          </CardContent>
-          <Box sx={{ p: 2, pt: 0 }}>
-            {movie.genres?.length ? (
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="h4"
-              >
-                {movie.genres[0].name}
-              </Typography>
-            ) : null}
-            <Typography
-              variant="subtitle2"
-              color="text.secondary"
-              component="div"
-            >
-              Length: {movie.runtime}
+            <Typography mt={1} variant="caption" gutterBottom component="h3">
+              {movie.overview}
             </Typography>
-          </Box>
-          <CardMenu>
-            <MenuItem onClick={() => onCardDelete(movie)}>
-              <FormattedMessage id="delete" />
-            </MenuItem>
-          </CardMenu>
+          </CardInfo>
         </Box>
       </Card>
     </>

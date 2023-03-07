@@ -22,14 +22,15 @@ export const CardMenu = ({ children }) => {
           position: "absolute",
           right: 5,
           top: 5,
-          background: "rgba(255, 255, 255, .5)",
+          background: "rgba(237, 159, 53, .3)",
           color: "rgba(231, 45, 31, 0.6)",
+          p: "5px",
         }}
         aria-controls={open ? "long-menu" : undefined}
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <MoreVertIcon />
+        <MoreVertIcon fontSize="small" />
       </IconButton>
       <Menu
         id="long-menu"

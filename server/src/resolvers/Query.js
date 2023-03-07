@@ -49,7 +49,6 @@ async function getPerson(parent, { id }, { locale }) {
 
 async function getNowPlayingMovie(_, {}, { locale }) {
   const play = await getNowPlaying(locale);
-  console.log(play);
   return play;
 }
 

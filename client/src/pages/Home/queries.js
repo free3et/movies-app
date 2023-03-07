@@ -12,6 +12,8 @@ export const MOVIES_QUERY = gql`
         image: posterPath
         releaseDate(format: "dd.MM.yyyy")
         voteAverage
+        runtime
+        overview
       }
     }
   }

@@ -9,11 +9,12 @@ import { ModalConfirm } from "../../Modal/Modal";
 import { AppContext } from "../../../context/index";
 
 const SelectedMovies = styled(Paper)(({ theme }) => ({
-  backgroundColor: "#fff",
+  backgroundColor: "#ddd",
   ...theme.typography.body2,
   padding: theme.spacing(1),
+  fontSize: "1rem",
   color: theme.palette.text.secondary,
-  height: "calc(100vh - 140px)",
+  //height: "calc(100vh - 140px)",
   position: "sticky",
   top: theme.spacing(2),
   display: "flex",
@@ -21,7 +22,7 @@ const SelectedMovies = styled(Paper)(({ theme }) => ({
 }));
 
 const MoviesList = styled(Stack)(({ theme }) => ({
-  overflow: "scroll",
+  //overflowY: "scroll",
   height: "100%",
 }));
 

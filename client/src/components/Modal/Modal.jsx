@@ -25,7 +25,7 @@ const style = {
   bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: "8px",
-  p: 4,
+  p: 2,
 };
 
 export const ModalConfirm = ({ open, url, title, onClose }) => {
@@ -47,21 +47,21 @@ export const ModalConfirm = ({ open, url, title, onClose }) => {
       }}
     >
       <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Movies list - "{title}""
+        <Typography id="modal-modal-title" variant="h4" component="h2">
+          Your movies list - "{title}""
         </Typography>
         <Paper
           component="form"
           sx={{
             p: "2px 4px",
-            marginTop: "20px",
+            marginTop: "15px",
             display: "flex",
             alignItems: "center",
             width: "100%",
           }}
         >
           <InputBase
-            sx={{ ml: 1, flex: 1 }}
+            sx={{ ml: 1, flex: 1, fontSize: "1em" }}
             placeholder="List URL"
             inputProps={{ "aria-label": "list URL" }}
             value={url}
@@ -72,7 +72,7 @@ export const ModalConfirm = ({ open, url, title, onClose }) => {
             sx={{ p: "10px" }}
             aria-label="search"
           >
-            <VisibilityIcon />
+            <VisibilityIcon fontSize="small" />
           </IconButton>
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
           <CopyToClipboard text={url} onCopy={() => setOpenAlert(true)}>
@@ -81,7 +81,7 @@ export const ModalConfirm = ({ open, url, title, onClose }) => {
               sx={{ p: "10px" }}
               aria-label="copy to clipboard"
             >
-              <ContentCopyIcon />
+              <ContentCopyIcon fontSize="small" />
             </IconButton>
           </CopyToClipboard>
         </Paper>

@@ -52,7 +52,7 @@ type Movie {
   voteCount: Int
   video: Boolean
   voteAverage: Float
-  runtime: Int!
+  runtime: Int
 }
 
 type Genre {
@@ -120,4 +120,7 @@ type Play {
   id: Int
   title: String!
   posterPath: String
+  voteAverage: Float
+  runtime: Int
+  releaseDate: String
 }
