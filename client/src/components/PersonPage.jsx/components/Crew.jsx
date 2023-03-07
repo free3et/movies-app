@@ -12,9 +12,6 @@ import ListItemText from "@mui/material/ListItemText";
 import { color, palette } from "@mui/system";
 import { theme } from "../../../theme";
 import { Button, CardContent, Paper } from "@mui/material";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 
 export const Crew = ({ departmentArr }) => {
   const a = Object.values(departmentArr).filter((el) => el.length > 0);
@@ -67,7 +64,7 @@ export const Crew = ({ departmentArr }) => {
                     <ListItem alignItems="center">
                       <ListItemText
                         primary={
-                          <Button color="success" variant="outlined">
+                          <Button variant="outlined">
                             <Link
                               to={`/movie/${person.id}`}
                               style={{
@@ -98,58 +95,6 @@ export const Crew = ({ departmentArr }) => {
               ))}
             </Grid>
           </Container>
-          <Box>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              variant="scrollable"
-              scrollButtons
-              allowScrollButtonsMobile
-              aria-label="scrollable force tabs example"
-            >
-              {el.map((person) => (
-                <Tab
-                  label={person.title}
-                  sx={{ width: 300, position: "relative", margin: "7px" }}
-                >
-                  <List
-                    sx={{ width: "100%", maxWidth: 250 }}
-                    key={person.id + person.title}
-                  >
-                    <ListItem alignItems="center">
-                      <ListItemText
-                        primary={
-                          <Button color="success" variant="outlined">
-                            <Link
-                              to={`/movie/${person.id}`}
-                              style={{
-                                color: "#01b4e4",
-                                textDecoration: "none",
-                              }}
-                            >
-                              {person.title}
-                            </Link>
-                          </Button>
-                        }
-                        secondary={
-                          <>
-                            <Divider
-                              sx={{
-                                margin: "6px 10px 6px 0",
-                              }}
-                            />
-                            <Typography component="span" variant="body2">
-                              Job: {person.job}
-                            </Typography>
-                          </>
-                        }
-                      />
-                    </ListItem>
-                  </List>
-                </Tab>
-              ))}
-            </Tabs>
-          </Box>
         </>
       ))}
       {/*   {production.length > 0 &&

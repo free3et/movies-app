@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export const Casts = ({ sortedCast }) => {
   return (
@@ -25,9 +26,19 @@ export const Casts = ({ sortedCast }) => {
             alt={person.name}
           />
           <CardContent>
-            <Link to={`/person/${person.id}`}>{person.name}</Link>
-            <Typography variant="subtitle2" gutterBottom component="h3">
-              Character: {person.character}
+            <Button variant="outlined">
+              <Link
+                to={`/person/${person.id}`}
+                style={{
+                  color: "#00a4d0",
+                  textDecoration: "none",
+                }}
+              >
+                {person.name}
+              </Link>
+            </Button>
+            <Typography variant="subtitle2" gutterBottom component="h3" mt={1}>
+              Role: {person.character}
             </Typography>
           </CardContent>
         </Card>

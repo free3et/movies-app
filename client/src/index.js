@@ -18,9 +18,8 @@ root.render(
 
 reportWebVitals();
 
-// add sharing on person page
 // footer
+// translations
 // section top popular on home
 // add to watchlist?
-// add slider on home?
 // make this app pretty

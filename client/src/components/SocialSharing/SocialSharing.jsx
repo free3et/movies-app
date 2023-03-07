@@ -26,7 +26,7 @@ export const SocialSharing = ({ url, title }) => {
         marginTop: "20px",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        //justifyContent: "center",
         width: "100%",
       }}
     >

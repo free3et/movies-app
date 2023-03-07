@@ -58,7 +58,7 @@ export const MovieCardSelected = ({ movie, onCardDelete }) => {
             </Typography>
             <Typography
               mt={1}
-              variant="caption"
+              variant="subtitle2"
               gutterBottom
               component="h3"
               color="info"

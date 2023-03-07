@@ -19,7 +19,7 @@ export const Recomendations = () => {
   } = useQuery(NOW_PLAYING_QUERY);
 
   const popularMovies = dataNowPlaying?.getNowPlayingMovie?.results?.filter(
-    (item) => item.voteAverage > 6.8
+    (item) => item.voteAverage > 7
   );
 
   const idsData = searchParams.get("ids")?.split(",");

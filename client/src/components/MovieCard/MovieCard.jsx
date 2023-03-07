@@ -65,13 +65,15 @@ export const MovieCard = ({
           <MenuItem onClick={() => onCardSelect(movie)}>Select</MenuItem>
         </CardMenu>
       )}
+      <Link to={`/movie/${movie.id}`}>
+        <CardMedia
+          component="img"
+          sx={{ minHeight: "200px" }}
+          image={movie.image}
+          alt={movie.title}
+        />
+      </Link>
 
-      <CardMedia
-        component="img"
-        sx={{ minHeight: "200px" }}
-        image={movie.image}
-        alt={movie.title}
-      />
       <CardInfo sx={{ position: "relative" /* minHeight: "105px" */ }}>
         <Link
           to={`/movie/${movie.id}`}

@@ -73,8 +73,9 @@ export const theme = createTheme({
       fontSize: "1.1em",
     },
     caption: {
-      fontSize: "0.8em",
-      fontWeight: 700,
+      fontSize: "0.9em",
+      fontWeight: 600,
+      lineHeight: 1.3,
     },
     button: {
       fontSize: "0.8em",

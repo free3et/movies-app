@@ -160,7 +160,12 @@ export const Home = () => {
           </Grid>
 
           <Grid item xs={12} md={8}>
-            <Box sx={{ flexGrow: 1, padding: 0.5 }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                padding: 0.5,
+              }}
+            >
               {loading && <Loader />}
               {searchLoading && <Loader />}
               {moviesData && (

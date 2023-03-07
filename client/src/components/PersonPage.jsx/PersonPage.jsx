@@ -26,6 +26,8 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import { Crew } from "./components/Crew";
+import { SocialSharing } from "../SocialSharing/SocialSharing";
+import { Cast } from "./components/Cast";
 
 export const PersonPage = () => {
   const params = useParams();
@@ -164,7 +166,7 @@ export const PersonPage = () => {
                   {name}
                 </Typography>
 
-                <Typography mb={2} variant="h4" gutterBottom component="h3">
+                <Typography mt={1} variant="h4" gutterBottom component="h3">
                   <CakeIcon
                     sx={{ fontSize: 22, position: "relative", top: 4 }}
                   />
@@ -180,6 +182,7 @@ export const PersonPage = () => {
                   &nbsp;
                   {gender === 1 ? "Female" : "Man"}
                 </Typography>
+                <SocialSharing url={window.location.href} title={name} />
 
                 {homepage && (
                   <Button href={homepage} variant="outlined" color="success">
@@ -200,47 +203,13 @@ export const PersonPage = () => {
           </Grid>
         </PersonInfo>
       </Container>
-      <Typography m={3} variant="h2" gutterBottom component="h3" align="center">
-        Known for
-      </Typography>
+
       <Container maxWidth="xl">
-        <Typography component="h4" variant="h4" align="center" mb={3}>
+        <Typography component="h4" variant="h4" align="center" m={3}>
           Acting
         </Typography>
         <Grid container justifyContent="center" mb={3}>
-          {sortedMovies?.map((cast, index) => {
-            return (
-              <Card
-                key={index}
-                sx={{
-                  width: 290,
-                  margin: "7px",
-                }}
-              >
-                <CardContent>
-                  <Button color="success" variant="outlined">
-                    <Link
-                      to={`/movie/${cast.id}`}
-                      style={{
-                        color: "#031d33",
-                        textDecoration: "none",
-                      }}
-                    >
-                      {cast.title}
-                    </Link>
-                  </Button>
-                  <Divider
-                    sx={{
-                      margin: "16px 10px 16px 0",
-                    }}
-                  />
-                  <Typography variant="subtitle2" gutterBottom component="h3">
-                    Character: {cast.character}
-                  </Typography>
-                </CardContent>
-              </Card>
-            );
-          })}
+          <Cast sortedMovies={sortedMovies} />
         </Grid>
       </Container>
       <Crew departmentArr={departmentArr} />

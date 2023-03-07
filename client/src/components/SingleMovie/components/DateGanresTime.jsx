@@ -5,7 +5,7 @@ import { getMovieRuntime } from "../../../hooks/useMovies/helpers";
 
 export const DateGenresTime = ({ release_date, genres, runtime }) => {
   return (
-    <Typography mb={2} variant="h4" gutterBottom component="h3">
+    <Typography mt={1.5} mb={2} variant="h4" gutterBottom component="h3">
       <TodayIcon sx={{ fontSize: 20, position: "relative", top: 4 }} />
       &nbsp;
       {release_date}&nbsp;

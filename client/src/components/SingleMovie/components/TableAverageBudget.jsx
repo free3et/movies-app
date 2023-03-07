@@ -9,12 +9,17 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-export const TableAverageBudget = ({ vote_average, budget, revenue }) => {
-  function createData(vote, budget, revenue) {
-    return { vote, budget, revenue };
+export const TableAverageBudget = ({
+  vote_average,
+  budget,
+  revenue,
+  status,
+}) => {
+  function createData(vote, budget, revenue, status) {
+    return { vote, budget, revenue, status };
   }
 
-  const rows = [createData(vote_average, budget, revenue)];
+  const rows = [createData(vote_average, budget, revenue, status)];
   return (
     <TableContainer>
       <Table sx={{ minWidth: 300 }} aria-label="simple table">
@@ -43,6 +48,14 @@ export const TableAverageBudget = ({ vote_average, budget, revenue }) => {
               }}
             >
               Revenue
+            </TableCell>
+            <TableCell
+              align="center"
+              sx={{
+                color: "#ffffff",
+              }}
+            >
+              Status
             </TableCell>
           </TableRow>
         </TableHead>
@@ -93,7 +106,7 @@ export const TableAverageBudget = ({ vote_average, budget, revenue }) => {
                   color: "#ffffff",
                 }}
               >
-                {row.budget}$
+                {row.budget > 0 && row.budget.toLocaleString("ru")}$
               </TableCell>
               <TableCell
                 align="center"
@@ -101,7 +114,15 @@ export const TableAverageBudget = ({ vote_average, budget, revenue }) => {
                   color: "#ffffff",
                 }}
               >
-                {row.revenue}$
+                {row.revenue > 0 && row.revenue.toLocaleString("ru")}$
+              </TableCell>
+              <TableCell
+                align="center"
+                sx={{
+                  color: "#ffffff",
+                }}
+              >
+                {row.status}
               </TableCell>
             </TableRow>
           ))}

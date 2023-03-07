@@ -19,6 +19,7 @@ import { TableAverageBudget } from "./components/TableAverageBudget";
 import { Companies } from "./components/Companies";
 import { Casts } from "./components/Casts";
 import { Crew } from "./components/Crew";
+import { SocialSharing } from "../SocialSharing/SocialSharing";
 
 export const SingleMovie = () => {
   const [response, setResponse] = useState({});
@@ -96,6 +97,7 @@ export const SingleMovie = () => {
     tagline,
     vote_average,
     credits,
+    status,
   } = response;
 
   function compare(a, b) {
@@ -160,7 +162,7 @@ export const SingleMovie = () => {
               <Typography variant="h2" gutterBottom component="h2">
                 {title}
               </Typography>
-
+              <SocialSharing url={window.location.href} title={title} />
               <DateGenresTime
                 release_date={release_date}
                 genres={genres}
@@ -176,6 +178,7 @@ export const SingleMovie = () => {
               <Typography mb={0} variant="h3" gutterBottom component="h3">
                 Tagline: {tagline}
               </Typography>
+
               <Typography
                 mb={0}
                 variant="subtitle2"
@@ -184,16 +187,15 @@ export const SingleMovie = () => {
               >
                 Overview: {overview}
               </Typography>
-
+              <Grid container spacing={1} gap={3}>
+                <Crew sortedCrew={sortedCrew} />
+              </Grid>
               <TableAverageBudget
                 vote_average={vote_average}
                 budget={budget}
                 revenue={revenue}
+                status={status}
               />
-
-              <Grid container spacing={1} gap={3}>
-                <Crew sortedCrew={sortedCrew} />
-              </Grid>
             </Box>
           </Grid>
           <Grid container spacing={2}>
@@ -218,7 +220,6 @@ export const SingleMovie = () => {
           <Companies production_companies={production_companies} />
         </Grid>
       </Container>
-
       <Typography
         mb={3}
         variant="h2"

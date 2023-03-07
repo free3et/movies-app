@@ -21,7 +21,7 @@ export const Crew = ({ sortedCrew }) => {
     <>
       {sortedCrew?.map((person, index) => (
         <>
-          <List sx={{ width: "100%", maxWidth: 280, gap: 2 }} key={index}>
+          <List sx={{ width: "100%", maxWidth: 300 }} key={index}>
             <ListItem alignItems="center">
               <ListItemAvatar>
                 <Avatar
@@ -32,10 +32,13 @@ export const Crew = ({ sortedCrew }) => {
               </ListItemAvatar>
               <ListItemText
                 primary={
-                  <Button color="success">
+                  <Button variant="outlined" sx={{ margin: "6px 10px 6px 0" }}>
                     <Link
                       to={`/person/${person.id}`}
-                      style={{ color: "#01b4e4", textDecoration: "none" }}
+                      style={{
+                        color: "#01b4e4",
+                        textDecoration: "none",
+                      }}
                     >
                       {person.name}
                     </Link>
@@ -51,7 +54,7 @@ export const Crew = ({ sortedCrew }) => {
                       Department: {person.department}
                     </Typography>
                     <Divider
-                      sx={{ margin: "6px 10px 6px 0", borderColor: "#ffffff" }}
+                      sx={{ margin: "6px 10px 6px 0", borderColor: "#747473" }}
                     />
                     <Typography
                       component="span"
