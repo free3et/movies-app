@@ -14,6 +14,7 @@ import Hidden from "@mui/material/Hidden";
 import { Navigation } from "../Navigation/Navigation";
 import { LOCALES } from "../../config/constants";
 import { AppContext } from "../../context/index";
+import Container from "@mui/material/Container";
 
 export const Header = () => {
   const [isDrawerOpen, setDrawerOpened] = useState(false);
@@ -28,65 +29,71 @@ export const Header = () => {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Hidden only={["lg", "xl"]}>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={() => setDrawerOpened(true)}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-            <Link to={"/home"} component={RouterLink} sx={{ color: "white" }}>
-              <FormattedMessage id="home" />
-            </Link>
-          </Typography>
-          <Box sx={{ display: { xs: "none", lg: "flex" } }}>
-            <Button
-              component={RouterLink}
-              to={"/recomendations"}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              <FormattedMessage id="moviesRecomendations" />
-            </Button>
-          </Box>
-          <Box>
-            <Button
-              variant="outlined"
-              color="info"
-              //disabled={state.locale === LOCALES.ENGLISH}
-              sx={{ m: 1, color: "white" }}
-              onClick={() => setLanguage(LOCALES.ENGLISH)}
-            >
-              English
-            </Button>
+    <Box
+      sx={{
+        background: "linear-gradient(to left, #344862, #203a43, #2c5364)",
+      }}
+    >
+      <Container maxWidth="xl" disableGutters>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <Hidden only={["lg", "xl"]}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+                onClick={() => setDrawerOpened(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+              <Link to={"/"} component={RouterLink} sx={{ color: "white" }}>
+                <FormattedMessage id="home" />
+              </Link>
+            </Typography>
+            <Box sx={{ display: { xs: "none", lg: "flex" } }}>
+              <Button
+                component={RouterLink}
+                to={"/recomendations"}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <FormattedMessage id="moviesRecomendations" />
+              </Button>
+            </Box>
+            <Box>
+              <Button
+                variant="outlined"
+                color="info"
+                //disabled={state.locale === LOCALES.ENGLISH}
+                sx={{ m: 1, color: "white" }}
+                onClick={() => setLanguage(LOCALES.ENGLISH)}
+              >
+                English
+              </Button>
 
-            <Button
-              variant="outlined"
-              color="success"
-              //disabled={state.locale === LOCALES.UKRANIAN}
-              sx={{ m: 1, color: "white" }}
-              onClick={() => setLanguage(LOCALES.UKRANIAN)}
-            >
-              Українська
-            </Button>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        anchor="left"
-        open={isDrawerOpen}
-        onClose={() => setDrawerOpened(false)}
-      >
-        {Navigation()}
-      </Drawer>
+              <Button
+                variant="outlined"
+                color="success"
+                //disabled={state.locale === LOCALES.UKRANIAN}
+                sx={{ m: 1, color: "white" }}
+                onClick={() => setLanguage(LOCALES.UKRANIAN)}
+              >
+                Українська
+              </Button>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          anchor="left"
+          open={isDrawerOpen}
+          onClose={() => setDrawerOpened(false)}
+        >
+          {Navigation()}
+        </Drawer>
+      </Container>
     </Box>
   );
 };

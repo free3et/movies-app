@@ -14,7 +14,7 @@ export const Companies = ({ production_companies }) => {
         variant="h4"
         gutterBottom
         component="h4"
-        color="primary"
+        color="secondary"
         align="center"
         mt={2}
       >
@@ -43,7 +43,11 @@ export const Companies = ({ production_companies }) => {
             }}
           >
             <img
-              style={{ objectFit: "contain", padding: "5px" }}
+              style={{
+                objectFit: "contain",
+                padding: "5px",
+                background: "rgba(255, 255, 255, .5)",
+              }}
               src={`${IMG_PATH_200}${company.logo_path}`}
               /*      srcSet={`${IMG_PATH}${company.logo_path}?w=248&fit=crop&auto=format&dpr=2 2x`} */
               alt={company.name}

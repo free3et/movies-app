@@ -60,11 +60,11 @@ export const MovieCard = ({
         />
       )}
 
-      {!isPreviewMode && (
+      {/*      {!isPreviewMode && (
         <CardMenu>
           <MenuItem onClick={() => onCardSelect(movie)}>Select</MenuItem>
         </CardMenu>
-      )}
+      )} */}
       <Link to={`/movie/${movie.id}`}>
         <CardMedia
           component="img"

@@ -8,6 +8,7 @@ import { Loader } from "../../components/Loader/Loader";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
 import { NOW_PLAYING_QUERY } from "../Home/queriesNowPlaying";
 import { Paper } from "@mui/material";
+import { HeroImg } from "../../components/HeroImg/HeroImg";
 
 export const Recomendations = () => {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -22,6 +23,8 @@ export const Recomendations = () => {
     (item) => item.voteAverage > 7
   );
 
+  const NowPlayingImg = dataNowPlaying?.getNowPlayingMovie?.results[1];
+
   const idsData = searchParams.get("ids")?.split(",");
 
   const { loading, error, data } = useQuery(MOVIES_QUERY_BY_IDS, {
@@ -34,8 +37,9 @@ export const Recomendations = () => {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, m: 2 }}>
-        <Grid container spacing={2}>
+      <Box sx={{ flexGrow: 1 }}>
+        <HeroImg NowPlayingImg={NowPlayingImg} />
+        <Grid container spacing={2} mt={2}>
           <Grid item xs={12} md={7}>
             <Box sx={{ flexGrow: 1 }} alignContent="center">
               <Paper>

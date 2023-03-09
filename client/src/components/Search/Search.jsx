@@ -19,6 +19,8 @@ export const Search = ({ onSubmit }) => {
               display: "flex",
               alignItems: "center",
               maxWidth: "630px",
+              mt: "-40px",
+              position: "relative",
             }}
           >
             <Field

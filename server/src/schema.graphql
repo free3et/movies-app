@@ -123,4 +123,5 @@ type Play {
   voteAverage: Float
   runtime: Int
   releaseDate: String
+  backdropPath: String
 }

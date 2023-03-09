@@ -39,18 +39,19 @@ export const Crew = ({ departmentArr }) => {
           <Container
             maxWidth="xl"
             disableGutters
-            sx={{
+            /*     sx={{
               background:
                 "linear-gradient(to right, rgba(31.5, 31.5, 52.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 31.5, 52.5, 0.84) 60%, rgba(31.5, 31.5, 52.5, 0.84) 100%)",
               padding: "20px 0",
-            }}
+            }} */
           >
             <Typography
-              component="h4"
-              variant="h4"
+              m={3}
+              variant="h2"
+              gutterBottom
+              component="h3"
               align="center"
               color="secondary"
-              m={3}
             >
               {el[0].department}
             </Typography>

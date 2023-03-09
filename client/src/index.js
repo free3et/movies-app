@@ -19,6 +19,9 @@ root.render(
 reportWebVitals();
 
 // footer
+// loading and errors
+// default picture
+// to top btn
 // translations
 // section top popular on home
 // add to watchlist?

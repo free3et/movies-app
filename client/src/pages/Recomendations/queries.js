@@ -9,6 +9,7 @@ export const MOVIES_QUERY_BY_IDS = gql`
       releaseDate(format: "dd.MM.yyyy")
       voteAverage
       runtime
+      backdropPath
     }
   }
 `;

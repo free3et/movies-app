@@ -11,7 +11,7 @@ export const ReleaseYearField = () => {
           id="outlined-number"
           label={<FormattedMessage id="release_year"></FormattedMessage>}
           type="number"
-          minvalue={1800}
+          minvalue={1887}
           maxvalue={2030}
           {...input}
         />

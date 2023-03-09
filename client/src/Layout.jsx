@@ -54,12 +54,13 @@ function Layout() {
 
           <Box
             sx={{
-              backgroundColor: (theme) => theme.palette.grey[100],
+              flexGrow: 1,
+              background: "linear-gradient(to left, #344862, #203a43, #2c5364)",
             }}
           >
             <Container maxWidth="xl" disableGutters>
               <Routes>
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/recomendations" element={<Recomendations />} />
                 <Route path="/movie/:id" element={<SingleMovie />} />
                 <Route path="/person/:id" element={<PersonPage />} />

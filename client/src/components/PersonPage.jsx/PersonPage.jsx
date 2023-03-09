@@ -62,7 +62,7 @@ export const PersonPage = () => {
     height: "500",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "left calc((50vw - 170px) - 340px) top",
+    //backgroundPosition: "left calc((50vw - 170px) - 340px) top",
     backgroundImage: `url(${IMG_FULL_SIZE}${profilePath})`,
     display: "flex",
     justifyContent: "center",
@@ -205,7 +205,14 @@ export const PersonPage = () => {
       </Container>
 
       <Container maxWidth="xl">
-        <Typography component="h4" variant="h4" align="center" m={3}>
+        <Typography
+          m={3}
+          variant="h2"
+          gutterBottom
+          component="h3"
+          align="center"
+          color="secondary"
+        >
           Acting
         </Typography>
         <Grid container justifyContent="center" mb={3}>

@@ -122,7 +122,7 @@ export const SingleMovie = () => {
     height: "500",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "left calc((50vw - 170px) - 340px) top",
+    //backgroundPosition: "left calc((50vw - 170px) - 340px) top",
     backgroundImage: `url(${IMG_FULL_SIZE}${poster_path})`,
     display: "flex",
     justifyContent: "center",
@@ -198,45 +198,45 @@ export const SingleMovie = () => {
               />
             </Box>
           </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={12} textAlign="center">
-              <Box m={3} ml={4}>
-                <iframe
-                  width="700px"
-                  height="400px"
-                  src={`https://www.youtube.com/embed/${firstTrailer?.key}?controls=1`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
-              </Box>
-            </Grid>
+          <Grid item xs={12}>
+            <Companies production_companies={production_companies} />
           </Grid>
         </Grid>
       </MovieInfo>
-      <Container maxWidth="lg">
-        <Grid item xs={12}>
-          <Companies production_companies={production_companies} />
+      <Grid container spacing={2}>
+        <Grid item xs={12} textAlign="center">
+          <Box m={3} ml={4}>
+            <iframe
+              width="700px"
+              height="400px"
+              src={`https://www.youtube.com/embed/${firstTrailer?.key}?controls=1`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </Box>
         </Grid>
-      </Container>
+      </Grid>
+
       <Typography
         mb={3}
         variant="h2"
         gutterBottom
         component="h3"
         align="center"
+        color="secondary"
       >
         Top Billed Cast
       </Typography>
       <Grid
         container
         justifyContent="center"
-        sx={{
+        /* sx={{
           background:
             "linear-gradient(to right, rgba(31.5, 31.5, 52.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 31.5, 52.5, 0.84) 60%, rgba(31.5, 31.5, 52.5, 0.84) 100%)",
           padding: "20px 0",
-        }}
+        }} */
       >
         <Casts sortedCast={sortedCast} />
       </Grid>
