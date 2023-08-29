@@ -16,13 +16,13 @@ Application is in progress!
 
 - Movie Details: Users can view detailed information about each movie and share this information with friends
   
-  ![image](https://github.com/free3et/movies-app/assets/19286076/32cc9359-c269-4582-8917-b72db03f4545)
+  ![image](https://github.com/free3et/movies-app/assets/19286076/acd2483d-d02d-4b1f-95ad-35f42026ce1b)
   
 - Bookmark Movies: Users can bookmark their favorite movies for later viewing
 - List of actors who participated in the film and detailed information about them
   
-  ![image](https://github.com/free3et/movies-app/assets/19286076/4ce38dd3-22c1-4f9b-8415-e01f29083e31)
-  
+  ![image](https://github.com/free3et/movies-app/assets/19286076/e4cc2b2a-a05e-4bf4-ad99-7ba8c21e2a2d)
+
 - Two languages on the site: English and Ukrainian
 
 ## Technology
