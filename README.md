@@ -42,7 +42,7 @@ To run the Movies App locally on your machine, follow these steps:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/free3et/movies-app.git)
+git clone https://github.com/free3et/movies-app.git
 ```
 2. Before starting the website, you will need to obtain the TMDB Movies API key. Follow these steps to obtain them and add them to your .env file.
 - Get TMDB API Key
