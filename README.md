@@ -4,7 +4,7 @@ Application is in progress!
 
 - Movies App is a React-powered movie website that allows users to search for movies by title, sort them by genre, year of release, popularity, average vote, include 18+ movies, and bookmark your favorite movies. Movies App is a multilingual site - in English and Ukrainian. There is also pagination for more convenient viewing.
 
-![image](https://github.com/free3et/movies-app/assets/19286076/02c37b61-393c-4194-925b-cefedb5a7d4f)
+![image](https://github.com/free3et/movies-app/assets/19286076/9855bbf0-6f75-4b98-9955-7ed2e3b5ddb4)
 
 ## Features
 - Search movies by title and watch movie trailer
@@ -12,8 +12,8 @@ Application is in progress!
 - Pagination for more convenient searching
 - Movie's trailer
   
-  ![image](https://github.com/free3et/movies-app/assets/19286076/f753f163-3346-4e6c-942b-71d6d7455f61)
-  
+  ![image](https://github.com/free3et/movies-app/assets/19286076/c4d6c10d-a9f2-424c-889c-55f38af84208)
+
 - Movie Details: Users can view detailed information about each movie and share this information with friends
   
   ![image](https://github.com/free3et/movies-app/assets/19286076/32cc9359-c269-4582-8917-b72db03f4545)
